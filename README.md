@@ -5,7 +5,7 @@
 ## هذا الموقع
 
 - لا يحتاج إلى أي خطوات بناء: ملفات HTML و CSS و JavaScript مباشرة.
-- يعرض الإصدارات والملفات القابلة للتحميل من صفحة [الإصدارات](https://github.com/ali-ghamdan/athar-website/releases) في GitHub.
+- يعرض الإصدارات والملفات القابلة للتحميل من صفحة [الإصدارات](https://github.com/atharapp/athar-website/releases) في GitHub.
 - عند الضغط على أي زر تحميل أو «تواصل معنا»، يفتح المتصفح صفحة GitHub المناسبة (تسجيل الدخول لحساب GitHub مجاني — قلّة، لكنه الأنسب للمشروع).
 
 ## أين أضع ملاحظتي أو مشكلتي؟
@@ -14,14 +14,14 @@
 
 - **مشكلة في التطبيق**: زر «الإبلاغ عن المشكلة» في شاشة الخطأ يفتح موضوعًا جاهزًا يحوي نسخة التطبيق ورسالة الخطأ.
 - **خطأ في نص أثر**: زر العلم الأحمر بجانب الأثر يفتح موضوعًا جاهزًا ببيانات الكتاب ورقم الأثر وبداية النص.
-- **اقتراح أو ملاحظة عامة**: زر «تواصل معنا» في الشاشة الرئيسية، أو زر [تواصل معنا](https://github.com/ali-ghamdan/athar-website/issues/new) في الموقع.
+- **اقتراح أو ملاحظة عامة**: زر «تواصل معنا» في الشاشة الرئيسية، أو زر [تواصل معنا](https://github.com/atharapp/athar-website/issues/new) في الموقع.
 
 الروابط المباشرة:
 
-- [افتح موضوعًا جديدًا](https://github.com/ali-ghamdan/athar-website/issues/new) — لملاحظة جديدة.
-- [مشكلات GitHub](https://github.com/ali-ghamdan/athar-website/issues) — تصفح المواضيع الحالية أو ابحث إن كان غيرك قد واجه المشكلة.
-- [المناقشات (Discussions)](https://github.com/ali-ghamdan/athar-website/discussions) — للنقاش العام والأسئلة بعيدًا عن التقارير.
-- [الإصدارات](https://github.com/ali-ghamdan/athar-website/releases) — كل نسخ التطبيق.
+- [افتح موضوعًا جديدًا](https://github.com/atharapp/athar-website/issues/new) — لملاحظة جديدة.
+- [مشكلات GitHub](https://github.com/atharapp/athar-website/issues) — تصفح المواضيع الحالية أو ابحث إن كان غيرك قد واجه المشكلة.
+- [المناقشات (Discussions)](https://github.com/atharapp/athar-website/discussions) — للنقاش العام والأسئلة بعيدًا عن التقارير.
+- [الإصدارات](https://github.com/atharapp/athar-website/releases) — كل نسخ التطبيق.
 
 ## تطوير الموقع
 

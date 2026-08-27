@@ -4,7 +4,7 @@
   /* ─────────────────────────────────────────────────────────────
      Configuration & Constants
      ───────────────────────────────────────────────────────────── */
-  const REPO = "ali-ghamdan/athar-website";
+  const REPO = "atharapp/athar-website";
   const FALLBACK_VERSION = "1448.14.3";
   const API_LATEST_URL = `https://api.github.com/repos/${REPO}/releases/latest`;
 
