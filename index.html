@@ -1,19 +1,17 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="light" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>جامع كتب الأثر — اقرأ كتب الآثار والتراجم بلا إنترنت | Athar</title>
-    <meta name="description" content="تطبيق سطح مكتب مجاني لقراءة كتب الآثار وتراجم الرواة، ببحثٍ ذكي في المتون والأسانيد وتخريج آلي للألفاظ، ويعمل بالكامل دون اتصال بالإنترنت." />
-    <meta name="keywords" content="كتب الآثار, الآثار, التراجم, تراجم الرواة, الجرح والتعديل, كتب السنة, تخريج الحديث, برامج إسلامية, Athar, جامع كتب الأثر" />
+    <meta name="description" content="تطبيق سطح مكتب وويب مجاني لقراءة كتب الآثار وتراجم الرواة، ببحثٍ ذكي في المتون والأسانيد، وتوليد شجرة الإسناد، وتخريج آلي للألفاظ، ويعمل بالكامل دون اتصال بالإنترنت." />
+    <meta name="keywords" content="كتب الآثار, الآثار, التراجم, تراجم الرواة, الجرح والتعديل, كتب السنة, تخريج الحديث, شجرة الإسناد, برامج إسلامية, Athar, جامع كتب الأثر" />
     <meta name="author" content="Ali Ghamdan" />
     <meta name="robots" content="index, follow" />
     <link rel="sitemap" href="sitemap.xml" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0c0f12" media="(prefers-color-scheme: dark)" />
     
-    <link rel="canonical" href="https://athar-desktop.vercel.app/" />
+    <link rel="canonical" href="https://athar-online.vercel.app/" />
     <link rel="icon" type="image/svg+xml" href="public/app-icon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32.png" />
     <link rel="apple-touch-icon" href="public/app-icon-512.png" />
@@ -21,17 +19,17 @@
     <!-- Open Graph & Social Cards -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="جامع كتب الأثر" />
-    <meta property="og:title" content="جامع كتب الأثر — اقرأ كتب الآثار والتراجم بلا إنترنت" />
-    <meta property="og:description" content="تطبيق سطح مكتب مجاني لقراءة كتب الآثار وتراجم الرواة، ببحثٍ ذكي في المتون والأسانيد وتخريج آلي، ويعمل دون اتصال." />
-    <meta property="og:url" content="https://athar-desktop.vercel.app/" />
-    <meta property="og:image" content="https://athar-desktop.vercel.app/public/og-image.png" />
+    <meta property="og:title" content="جامع كتب الأثر — اقرأ كتب الآثار وتراجم الرواة بلا إنترنت" />
+    <meta property="og:description" content="تطبيق مكتبي وويب مجاني لقراءة كتب الآثار وتراجم الرواة، ببحثٍ ذكي في المتون والأسانيد وتخريج آلي وشجرة إسناد، ويعمل دون اتصال." />
+    <meta property="og:url" content="https://athar-online.vercel.app/" />
+    <meta property="og:image" content="https://athar-online.vercel.app/public/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="ar_AR" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="جامع كتب الأثر — اقرأ كتب الآثار والتراجم بلا إنترنت" />
-    <meta name="twitter:description" content="تطبيق سطح مكتب مجاني لقراءة كتب الآثار وتراجم الرواة، ببحثٍ ذكي في المتون والأسانيد وتخريج آلي." />
-    <meta name="twitter:image" content="https://athar-desktop.vercel.app/public/og-image.png" />
+    <meta name="twitter:title" content="جامع كتب الأثر — اقرأ كتب الآثار وتراجم الرواة بلا إنترنت" />
+    <meta name="twitter:description" content="تطبيق مكتبي وويب مجاني لقراءة كتب الآثار وتراجم الرواة، ببحثٍ ذكي في المتون والأسانيد وتخريج آلي وشجرة إسناد." />
+    <meta name="twitter:image" content="https://athar-online.vercel.app/public/og-image.png" />
 
     <!-- Preload critical local fonts -->
     <link rel="preload" href="fonts/tajawal-arabic-700-normal.woff2" as="font" type="font/woff2" crossorigin />
@@ -46,27 +44,31 @@
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "جامع كتب الأثر",
-      "alternateName": "Athar",
-      "operatingSystem": "Windows, Linux, macOS",
+      "alternateName": "Athar Desktop & Web",
+      "operatingSystem": "Windows, Linux, macOS, Web",
       "applicationCategory": "EducationalApplication",
       "applicationSubCategory": "IslamicLibrary",
-      "softwareVersion": "1448.14.3",
+      "softwareVersion": "1448.23.3",
       "inLanguage": "ar",
-      "description": "تطبيق سطح مكتب مجاني لقراءة كتب الآثار وتراجم الرواة، ببحثٍ ذكي في المتون والأسانيد وتخريج آلي للألفاظ، ويعمل دون اتصال بالإنترنت.",
-      "url": "https://athar-desktop.vercel.app/",
+      "description": "تطبيق سطح مكتب وويب مجاني لقراءة كتب الآثار وتراجم الرواة، ببحثٍ ذكي في المتون والأسانيد وتخريج آلي للألفاظ، ويعمل دون اتصال بالإنترنت.",
+      "url": "https://athar-online.vercel.app/",
       "downloadUrl": "https://github.com/atharapp/athar-website/releases/latest",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
     }
     </script>
 
-    <!-- Theme Initialization Script (Prevents flash) -->
+    <!-- Theme Initialization Script -->
     <script>
       (function () {
         const stored = localStorage.getItem("theme");
-        if (stored === "light" || stored === "dark") {
-          document.documentElement.setAttribute("data-theme", stored);
-        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        if (stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.classList.add("dark");
+          document.documentElement.classList.remove("light");
           document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.classList.add("light");
+          document.documentElement.classList.remove("dark");
+          document.documentElement.setAttribute("data-theme", "light");
         }
       })();
     </script>
@@ -78,78 +80,348 @@
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="#">
-          <img class="brand-icon" src="public/app-icon.svg" alt="شعار جامع كتب الأثر" width="34" height="34" />
-          <span class="brand-name">جامع كتب الأثر</span>
+          <img class="brand-icon" src="public/app-icon.svg" alt="شعار جامع كتب الأثر" width="32" height="32" />
+          <span>جامع كتب الأثر</span>
         </a>
 
         <nav class="site-nav" aria-label="التنقل الرئيسي">
           <a class="nav-link" href="#features">المميزات</a>
-          <a class="nav-link" href="#demo">التخريج الحي</a>
-          <a class="nav-link" href="#screens">جولة الشاشات</a>
+          <a class="nav-link" href="#search-modes">أنماط البحث</a>
+          <a class="nav-link" href="#showcase">المعاينة الحية</a>
           <a class="nav-link" href="#download">التحميل</a>
-          <a class="nav-link" href="#contact">تواصل معنا</a>
+          <a class="nav-link" href="#faq">الأسئلة الشائعة</a>
         </nav>
 
         <div class="header-actions">
-          <a class="btn-icon" href="https://github.com/atharapp/athar-website" target="_blank" rel="noopener" aria-label="مستودع الصفحة على GitHub">
-            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          <a class="btn btn-outline btn-sm" href="https://athar-online.vercel.app" target="_blank" rel="noopener">
+            <span>نسخة الويب (PWA)</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>
-          <button id="theme-toggle" class="btn-icon theme-toggle" type="button" aria-label="تبديل المظهر بين الداكن والفاتح">
+          <a class="btn btn-ghost btn-icon" href="https://github.com/atharapp/athar-website" target="_blank" rel="noopener" aria-label="مستودع المشروع على GitHub">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          </a>
+          <button id="theme-toggle" class="btn btn-ghost btn-icon theme-toggle" type="button" aria-label="تبديل المظهر بين الداكن والفاتح">
             <svg class="icon icon-sun" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
             <svg class="icon icon-moon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          </button>
+          <button id="mobile-menu-btn" class="btn btn-ghost btn-icon mobile-menu-btn" type="button" aria-label="فتح القائمة">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
           </button>
         </div>
       </div>
     </header>
 
+    <!-- Mobile Drawer (Sheet) -->
+    <div id="mobile-drawer-backdrop" class="mobile-drawer-backdrop"></div>
+    <div id="mobile-drawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="قائمة التنقل">
+      <div class="mobile-drawer-header">
+        <div class="brand">
+          <img src="public/app-icon.svg" alt="شعار جامع كتب الأثر" width="28" height="28" />
+          <span>جامع كتب الأثر</span>
+        </div>
+        <button id="mobile-drawer-close" class="btn btn-ghost btn-icon-sm" type="button" aria-label="إغلاق القائمة">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <nav class="mobile-nav-links">
+        <a class="mobile-nav-link" href="#features">المميزات</a>
+        <a class="mobile-nav-link" href="#search-modes">أنماط البحث</a>
+        <a class="mobile-nav-link" href="#showcase">المعاينة الحية</a>
+        <a class="mobile-nav-link" href="#download">التحميل</a>
+        <a class="mobile-nav-link" href="#faq">الأسئلة الشائعة</a>
+      </nav>
+      <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.75rem;">
+        <a class="btn btn-primary" href="https://athar-online.vercel.app" target="_blank" rel="noopener">
+          <span>فتح نسخة الويب (PWA)</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+
     <main id="main-content">
       <!-- Hero Section -->
       <section class="hero">
-        <div class="hero-glow"></div>
         <div class="container hero-inner">
-          <div class="hero-badge">
-            <span class="badge-dot"></span>
-            <span class="live-version">الإصدار ا��أخير</span>
+          <div class="badge badge-secondary" style="font-size: 0.8125rem; padding: 0.35rem 0.85rem;">
+            <span class="badge-dot pulse" style="color: var(--grade-strong);"></span>
+            <span class="live-version">الإصدار v1448.23.3 — متاح للتحميل والتشغيل الفوري</span>
           </div>
 
           <h1 class="hero-title">
             اقرأ كتب الآثار وتراجم الرواة، <br />
-            <span class="hero-title-highlight">في تطبيق مكتبي متكامل بلا إنترنت</span>
+            <span class="hero-title-highlight">في تطبيق متكامل بلا إنترنت</span>
           </h1>
 
           <p class="hero-desc">
             مكتبة حديثية شاملة تجمع أمهات كتب الآثار والمصنفات، ببحث ذكي في المتون والأسانيد،
-            وتخريج آلي للألفاظ، وتراجم مفصلة للرواة، خفيف وسريع ويعمل دون اتصال.
+            وتخريج آلي للألفاظ، وشجرة إسناد تفاعلية، وتراجم مفصلة للرواة، خفيف وسريع ويعمل 100% دون اتصال.
           </p>
 
           <div class="hero-cta">
             <a id="hero-download-btn" class="btn btn-primary btn-lg" href="#download">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               تحميل مجاني لجهازك
             </a>
-            <a class="btn btn-outline btn-lg" href="#demo">
-              جرب التخريج الحي ←
+            <a class="btn btn-secondary btn-lg" href="https://athar-online.vercel.app" target="_blank" rel="noopener">
+              تشغيل نسخة الويب (PWA) ↗
+            </a>
+            <a class="btn btn-outline btn-lg" href="#showcase">
+              استكشف المعاينة التفاعلية ↓
             </a>
           </div>
 
           <p class="hero-meta">
-            <span id="hero-download-meta">ويندوز · لينكس · ماك (مجاني بالكامل)</span>
+            <span id="hero-download-meta">تم اكتشاف جهازك: Windows · مجاني ومستقل بالكامل</span>
           </p>
 
-          <!-- Hero App Frame Preview -->
-          <div class="hero-preview">
-            <div class="preview-bar">
+          <!-- Live Desktop App Window Component (Real view from athar-desktop) -->
+          <div class="app-window" id="app-window-demo">
+            <!-- 1. Window Titlebar -->
+            <div class="window-titlebar">
               <div class="traffic-lights">
-                <span class="traffic-light"></span>
-                <span class="traffic-light"></span>
-                <span class="traffic-light"></span>
+                <span class="traffic-light red"></span>
+                <span class="traffic-light yellow"></span>
+                <span class="traffic-light green"></span>
               </div>
-              <span class="preview-title">جامع كتب الأثر — الشاشة الرئيسية</span>
-              <span style="width: 32px"></span>
+              <span class="window-title">
+                <img src="public/app-icon.svg" width="16" height="16" alt="" />
+                جامع كتب الأثر — صحيح البخاري
+              </span>
+              <span class="window-hijri-pill">v1448.23.3</span>
             </div>
-            <div class="preview-screen">
-              <img class="preview-img light" src="screenshots/light/home.png" alt="واجهة تطبيق جامع كتب الأثر في الوضع الفاتح" width="1060" loading="eager" />
-              <img class="preview-img dark" src="screenshots/dark/home.png" alt="واجهة تطبيق جامع كتب الأثر في الوضع الداكن" width="1060" loading="eager" />
+
+            <!-- 2. Toolbox Header (Matching athar-desktop Toolbox) -->
+            <div class="window-toolbox">
+              <div class="window-toolbox-start">
+                <div class="window-toolbox-brand">
+                  <span class="window-brand-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg>
+                  </span>
+                  <span>جامع كتب الأثر</span>
+                </div>
+                <div class="window-book-badge">
+                  <span>صحيح البخاري — كتاب بدء الوحي</span>
+                </div>
+              </div>
+
+              <div class="window-toolbox-end">
+                <span class="window-hijri-pill">18 رمضان 1448 هـ</span>
+                <nav class="window-nav-items" aria-label="أشرطة التنقل الداخلية">
+                  <button type="button" class="window-nav-btn active">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/><path d="M12 6v6"/></svg>
+                    <span>مكتبتي</span>
+                  </button>
+                  <button type="button" class="window-nav-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg>
+                    <span>قائمة الكتب</span>
+                  </button>
+                  <button type="button" class="window-nav-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <span>الرواة</span>
+                  </button>
+                  <button type="button" class="window-nav-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <span>البحث</span>
+                  </button>
+                  <button type="button" class="window-nav-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                    <span>المفضلة</span>
+                  </button>
+                  <button type="button" class="window-nav-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                    <span>الفوائد</span>
+                  </button>
+                  <button type="button" class="window-nav-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    <span>الإعدادات</span>
+                  </button>
+                </nav>
+              </div>
+            </div>
+
+            <!-- 3. Tab Bar (TabsList) -->
+            <div class="window-tabbar">
+              <div class="app-tab active">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                <span>صحيح البخاري — أثر #1</span>
+                <span class="tab-close-btn">✕</span>
+              </div>
+              <div class="app-tab">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <span>بحث: إنما الأعمال بالنيات</span>
+                <span class="tab-close-btn">✕</span>
+              </div>
+              <div class="app-tab">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5"/><path d="M4 20L21 3"/></svg>
+                <span>تخريج مقارن</span>
+                <span class="tab-close-btn">✕</span>
+              </div>
+              <div class="app-tab">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span>ترجمة: سفيان بن عيينة</span>
+                <span class="tab-close-btn">✕</span>
+              </div>
+              <button type="button" class="tab-add-btn" title="فتح تبويب بحث جديد">+</button>
+            </div>
+
+            <!-- 4. App Main Stage Body -->
+            <div class="window-body">
+              <!-- Left Index Sidebar Panel (ResizablePanel from athar-desktop) -->
+              <aside class="window-index-panel" aria-label="فهرس الكتاب">
+                <input class="index-search-input" type="search" placeholder="بحث في الأبواب..." />
+                <div class="index-tabs">
+                  <button type="button" class="index-tab-trigger active">الأبواب (97)</button>
+                  <button type="button" class="index-tab-trigger">الفوائد (3)</button>
+                </div>
+                <div class="index-items-list">
+                  <div class="index-item active">
+                    <span>1. بَدْءُ الْوَحْيِ</span>
+                    <span class="index-item-count">1</span>
+                  </div>
+                  <div class="index-item">
+                    <span>2. الإيمان</span>
+                    <span class="index-item-count">45</span>
+                  </div>
+                  <div class="index-item">
+                    <span>3. العلم</span>
+                    <span class="index-item-count">79</span>
+                  </div>
+                  <div class="index-item">
+                    <span>4. الوضوء</span>
+                    <span class="index-item-count">102</span>
+                  </div>
+                  <div class="index-item">
+                    <span>5. الغسل</span>
+                    <span class="index-item-count">32</span>
+                  </div>
+                  <div class="index-item">
+                    <span>6. التيمم</span>
+                    <span class="index-item-count">29</span>
+                  </div>
+                  <div class="index-item">
+                    <span>7. الصلاة</span>
+                    <span class="index-item-count">349</span>
+                  </div>
+                </div>
+              </aside>
+
+              <!-- Center Reader Panel (Book Page from athar-desktop) -->
+              <div class="window-reader-panel">
+                <!-- Reader Top Action Bar (Desktop & Tablet) -->
+                <div class="window-reader-toolbar">
+                  <div class="toolbar-group">
+                    <button type="button" class="toolbar-btn" disabled>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                      <span>السابق</span>
+                    </button>
+                    <button type="button" class="toolbar-btn">
+                      <span>التالي</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+                    </button>
+                    <span class="toolbar-counter">الأثر 1 من 7,563</span>
+                    <label class="toolbar-group" style="gap: 0.25rem;">
+                      <span style="font-size: 0.7rem; color: var(--muted-foreground);">الانتقال:</span>
+                      <input type="number" class="toolbar-jump-input" value="1" min="1" max="7563" />
+                    </label>
+                  </div>
+
+                  <div class="toolbar-group">
+                    <button type="button" class="toolbar-btn icon-only" title="البحث في هذا الكتاب">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    </button>
+                    <button type="button" class="toolbar-btn icon-only" id="toggle-tashkeel-btn" title="تبديل التشكيل">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
+                    </button>
+                    <button type="button" class="toolbar-btn icon-only" id="font-zoom-in" title="تكبير الخط">أ+</button>
+                    <button type="button" class="toolbar-btn icon-only" id="font-zoom-out" title="تصغير الخط">أ-</button>
+                    <button type="button" class="toolbar-btn icon-only copy-btn" title="نسخ الأثر مع العزو" data-code="عن عمر بن الخطاب رضي الله عنه قال: سمعت رسول الله صلى الله عليه وسلم يقول: «إنما الأعمال بالنيات...» [صحيح البخاري: 1]">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </button>
+                    <button type="button" class="toolbar-btn icon-only" title="أين ورد هذا الأثر؟ (التخريج والمقارنة)">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5"/><path d="M4 20L21 3"/></svg>
+                    </button>
+                    <button type="button" class="toolbar-btn icon-only" title="تصدير الأثر كبطاقة صورة">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                    </button>
+                    <button type="button" class="toolbar-btn icon-only" title="وضع فاصل القراءة">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                    </button>
+                    <button type="button" class="toolbar-btn icon-only" id="demo-heart-btn" title="المفضلة" style="color: #ef4444;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                    </button>
+                    <button type="button" class="toolbar-btn icon-only" title="الإبلاغ عن خطأ">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Breadcrumb -->
+                <nav class="window-breadcrumb" aria-label="مسار التصفح">
+                  <a href="#">الكتب المحملة</a>
+                  <span class="separator">/</span>
+                  <a href="#">صحيح البخاري</a>
+                  <span class="separator">/</span>
+                  <span class="current">أثر 1</span>
+                </nav>
+
+                <!-- Main Stage: Live Narration Card -->
+                <div class="window-content" id="narration-view-container">
+                  <div class="narration-card">
+                    <div class="narration-header">
+                      <span class="narration-book-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        صحيح البخاري — كتاب بدء الوحي
+                      </span>
+                      <div class="toolbar-group">
+                        <span class="badge badge-default" style="font-size: 0.7rem;">1</span>
+                        <span class="narration-number">أثر رقم #1</span>
+                      </div>
+                    </div>
+
+                    <div class="narration-subject">
+                      باب: كَيْفَ كَانَ بَدْءُ الْوَحْيِ إِلَى رَسُولِ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ
+                    </div>
+
+                    <div class="narration-isnad">
+                      حَدَّثَنَا <span class="rawy-token grade-strong" data-narrator-id="1">الْحُمَيْدِيُّ عَبْدُ اللَّهِ بْنُ الزُّبَيْرِ</span> قَالَ: حَدَّثَنَا <span class="rawy-token grade-strong" data-narrator-id="2">سُفْيَانُ</span> قَالَ: حَدَّثَنَا <span class="rawy-token grade-strong" data-narrator-id="3">يَحْيَى بْنُ سَعِيدٍ الأَنْصَارِيُّ</span> قَالَ: أَخْبَرَنِي <span class="rawy-token grade-strong" data-narrator-id="4">مُحَمَّدُ بْنُ إِبْرَاهِيمَ التَّيْمِيُّ</span>، أَنَّهُ سَمِعَ <span class="rawy-token grade-strong" data-narrator-id="5">عَلْقَمَةَ بْنَ وَقَّاصٍ اللَّيْثِيَّ</span> يَقُولُ: سَمِعْتُ <span class="rawy-token grade-companion" data-narrator-id="6">عُمَرَ بْنَ الْخَطَّابِ</span> رَضِيَ اللَّهُ عَنْهُ عَلَى الْمِنْبَرِ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ ﷺ يَقُولُ:
+                    </div>
+
+                    <div id="hero-matn-text" class="narration-matn">
+                      «إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا، فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ.»
+                    </div>
+
+                    <div style="border-top: 1px solid var(--border); padding-top: 0.75rem;">
+                      <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.75rem; font-weight: 600; color: var(--muted-foreground);">رواته في هذا الأثر (6)</span>
+                        <a href="#isnad-tree" class="btn btn-outline btn-sm" style="font-size: 0.75rem; height: 1.75rem; padding-inline: 0.5rem;">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"/><circle cx="6" cy="19" r="3"/><circle cx="18" cy="19" r="3"/><path d="M12 8v4"/></svg>
+                          شجرة الإسناد
+                        </a>
+                      </div>
+                      <div style="display: flex; flex-wrap: wrap; gap: 0.375rem;">
+                        <span class="badge badge-outline rawy-token" data-narrator-id="1" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">
+                          الحميدي عبد الله بن الزبير <span class="badge badge-secondary" style="color: var(--grade-strong); font-size: 0.65rem; margin-inline-start: 4px;">ثقة حجة</span>
+                        </span>
+                        <span class="badge badge-outline rawy-token" data-narrator-id="2" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">
+                          سفيان بن عيينة <span class="badge badge-secondary" style="color: var(--grade-strong); font-size: 0.65rem; margin-inline-start: 4px;">ثقة حجة</span>
+                        </span>
+                        <span class="badge badge-outline rawy-token" data-narrator-id="3" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">
+                          يحيى بن سعيد الأنصاري <span class="badge badge-secondary" style="color: var(--grade-strong); font-size: 0.65rem; margin-inline-start: 4px;">ثقة ثبت</span>
+                        </span>
+                        <span class="badge badge-outline rawy-token" data-narrator-id="4" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">
+                          محمد بن إبراهيم التيمي <span class="badge badge-secondary" style="color: var(--grade-strong); font-size: 0.65rem; margin-inline-start: 4px;">ثقة ثبت</span>
+                        </span>
+                        <span class="badge badge-outline rawy-token" data-narrator-id="5" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">
+                          علقمة بن وقاص الليثي <span class="badge badge-secondary" style="color: var(--grade-strong); font-size: 0.65rem; margin-inline-start: 4px;">ثقة ثبت</span>
+                        </span>
+                        <span class="badge badge-outline rawy-token" data-narrator-id="6" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">
+                          عمر بن الخطاب <span class="badge badge-secondary" style="color: var(--grade-companion); font-size: 0.65rem; margin-inline-start: 4px;">صحابي جليل</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -159,7 +431,7 @@
       <section id="features" class="section">
         <div class="container">
           <div class="section-head">
-            <span class="section-pill">مميزات صُممت للباحثين</span>
+            <span class="badge badge-secondary">مميزات صُممت للباحثين والمحققين</span>
             <h2 class="section-title">أدوات متطورة بين يديك</h2>
             <p class="section-desc">تجربة متكاملة مصممة بعناية لقراءة وبحث وتحقيق الأحاديث والآثار النبوية والآثار عن السلف.</p>
           </div>
@@ -168,105 +440,723 @@
             <!-- Card 1: Offline First (Span 2) -->
             <article class="bento-card span-2">
               <div>
-                <div class="card-icon">
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
+                <div class="bento-card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
                 </div>
-                <h3 class="card-title">يعمل بالكامل دون اتصال بالإنترنت (Offline-First)</h3>
-                <p class="card-desc">
-                  حمّل الكتب وقواعد البيانات مرة واحدة واستمتع بالقراءة والبحث والتخريج السريع في أي وقت وأي مكان دون الحاجة لأي اتصال بالإنترنت.
+                <h3 class="card-title" style="margin-bottom: 0.5rem;">يعمل بالكامل دون اتصال بالإنترنت (Offline-First)</h3>
+                <p class="card-description">
+                  محرك SQLite أصلي مدمج فائق السرعة. حمّل الكتب وقواعد البيانات مرة واحدة واستمتع بالقراءة والبحث والتخريج السريع في أي وقت وأي مكان دون الحاجة لأي اتصال.
                 </p>
               </div>
-              <span class="card-badge">استقلالية وسرعة كاملة</span>
+              <span class="badge badge-outline">استقلالية وسرعة فائقة</span>
             </article>
 
-            <!-- Card 2: Smart Search -->
+            <!-- Card 2: 4 Search Modes -->
             <article class="bento-card">
               <div>
-                <div class="card-icon">
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <div class="bento-card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                 </div>
-                <h3 class="card-title">بحث ذكي</h3>
-                <p class="card-desc">
-                  محرك بحث عربي فائق السرعة يبحث في المتون والأسانيد ويتجاهل علامات التشكيل وفروق الهمزات للوصول للأثر المطلوب فوراً.
+                <h3 class="card-title" style="margin-bottom: 0.5rem;">4 أنماط بحث تخصصية متطورة</h3>
+                <p class="card-description">
+                  بحث بسيط، وبحث ذكي بفهارس FTS5 و BM25، وبحث بسلاسل الرواة المتتابعة، وبحث التخريج والمقارنة اللفظية.
                 </p>
               </div>
-              <span class="card-badge">Smart Search</span>
+              <span class="badge badge-outline">4 Search Modes</span>
             </article>
 
             <!-- Card 3: Live Diff & Takhrij -->
             <article class="bento-card">
               <div>
-                <div class="card-icon">
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M4 20L21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/></svg>
+                <div class="bento-card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M4 20L21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/></svg>
                 </div>
-                <h3 class="card-title">تخريج ومقارنة الألفاظ</h3>
-                <p class="card-desc">
-                  محاذاة آلية دقيقة للألفاظ والزيادات بين الروايات المختلفة مع تلوين الفروق ونسبة المطابقة.
+                <h3 class="card-title" style="margin-bottom: 0.5rem;">تخريج ومقارنة الألفاظ (LCS)</h3>
+                <p class="card-description">
+                  محاذاة آلية دقيقة للألفاظ والزيادات بين مختلف الروايات مع تلوين الفروق وحساب نسبة التطابق بدقة.
                 </p>
               </div>
-              <span class="card-badge">Word-level Diff</span>
+              <span class="badge badge-outline">Word-Level Diff</span>
             </article>
 
             <!-- Card 4: Narrators Tree (Span 2) -->
             <article class="bento-card span-2">
               <div>
-                <div class="card-icon">
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <div class="bento-card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><circle cx="6" cy="19" r="3"/><circle cx="18" cy="19" r="3"/><path d="M12 8v4"/><path d="m8.5 14.5 2 2.5"/><path d="m15.5 14.5-2 2.5"/></svg>
                 </div>
-                <h3 class="card-title">شجرة الرواة وأقوال الجرح والتعديل</h3>
-                <p class="card-desc">
-                  روابط تفاعلية لجميع رواة السند مع شارات مراتبهم (صحابي، ثقة، مقبول...)، وتراجم مفصلة مستخرجة من أمهات كتب التراجم كـ «تهذيب الكمال».
+                <h3 class="card-title" style="margin-bottom: 0.5rem;">توليد شجرة الإسناد وموسوعة الجرح والتعديل</h3>
+                <p class="card-description">
+                  توليد مرئي لشجرة السند وترابط الشيوخ والتلاميذ مع مصفوفة مراتب الجرح والتعديل (صحابي، ثقة، صدوق...)، وتراجم مفصلة مستخرجة من أمهات كتب التراجم مع تصدير المخطط.
                 </p>
               </div>
-              <span class="card-badge">تراجم متصلة بالسند</span>
+              <span class="badge badge-outline">شجرة إسناد تفاعلية</span>
             </article>
 
-            <!-- Card 5: Notes & Bookmarks -->
+            <!-- Card 5: Social Card Generator -->
             <article class="bento-card">
               <div>
-                <div class="card-icon">
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                <div class="bento-card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
                 </div>
-                <h3 class="card-title">الفوائد وفواصل القراءة</h3>
-                <p class="card-desc">
-                  دوّن تعليقاتك وفوائدك بمحرر Markdown متكامل، واحفظ فواصل القراءة والمفضلة واسترجعها بسهولة.
+                <h3 class="card-title" style="margin-bottom: 0.5rem;">تصدير بطاقات الآثار الفاخرة</h3>
+                <p class="card-description">
+                  حوّل أي أثر لبطاقة صورة أنيقة عالية الدقة صالحة للنشر والمشاركة على شبكات التواصل مع تخصيص المظهر والإطار.
                 </p>
               </div>
-              <span class="card-badge">حفظ محلي آمن</span>
+              <span class="badge badge-outline">Image Cards Export</span>
             </article>
 
-            <!-- Card 6: Customizable UI & User Experience (Span 2) -->
+            <!-- Card 6: Notes & Customizable UI (Span 2) -->
             <article class="bento-card span-2">
               <div>
-                <div class="card-icon">
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+                <div class="bento-card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
                 </div>
-                <h3 class="card-title">واجهة عربية مريحة وقابلة للتخصيص</h3>
-                <p class="card-desc">
-                  تحكم كامل بحجم الخط، خيارات إظهار التشكيل أو إخفائه، فتح كتب ومواضع متعددة في تبويبات مستقلة، ومظهر داكن وفاتح مريح للعين.
+                <h3 class="card-title" style="margin-bottom: 0.5rem;">دفتر الفوائد وتخصيص الخطوط والواجهة</h3>
+                <p class="card-description">
+                  دوّن تعليقاتك وفوائدك بمحرر Markdown متكامل، واحفظ فواصل القراءة والمفضلة واسترجعها بسهولة مع دعم الخطوط العربية المتنوعة (تجوال، أميري، سمرقند، كوفي).
                 </p>
               </div>
-              <span class="card-badge">تخصيص كامل</span>
+              <span class="badge badge-outline">تدوين وتخصيص كامل</span>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- Live Interactive Takhrij Simulator -->
+      <!-- Search Modes In-Depth Showcase Section (Rebuilt) -->
+      <section id="search-modes" class="section section-alt">
+        <div class="container">
+          <div class="section-head">
+            <span class="badge badge-secondary">محرك البحث الرباعي التخصصي</span>
+            <h2 class="section-title">4 أنماط بحث تلبي كل احتياجات الباحث</h2>
+            <p class="section-desc">محرك بحث مدمج صُمم خصيصاً للمتون والروايات وأسانيد كتب الحديث النبوي والآثار.</p>
+          </div>
+
+          <div class="search-modes-showcase">
+            <!-- Mode Switcher Navigation Tabs -->
+            <div class="search-mode-nav-tabs">
+              <button class="search-mode-tab-btn active" data-search-mode="mode-simple" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <span>1. البحث البسيط المطبع (LIKE)</span>
+              </button>
+              <button class="search-mode-tab-btn" data-search-mode="mode-fts" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <span>2. البحث السريع الذكي (FTS5 / BM25)</span>
+              </button>
+              <button class="search-mode-tab-btn" data-search-mode="mode-chain" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"/><path d="M12 12v3"/></svg>
+                <span>3. سلاسل الرواة المتتابعة (A ⬅ B ⬅ C)</span>
+              </button>
+              <button class="search-mode-tab-btn" data-search-mode="mode-takhrij" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5"/><path d="M4 20L21 3"/></svg>
+                <span>4. التخريج والمقارنة اللفظية (LCS Diff)</span>
+              </button>
+            </div>
+
+            <!-- Mode 1 Pane: Simple Normalized LIKE -->
+            <div id="mode-simple" class="search-mode-tab-pane active">
+              <div class="search-sim-box">
+                <div class="search-sim-header">
+                  <div>
+                    <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--foreground); margin-bottom: 0.25rem;">البحث البسيط مع التطبيع الشامل</h3>
+                    <p style="font-size: 0.8125rem; color: var(--muted-foreground);">تطبيع تلقائي فوري لكافة الهمزات (أ، إ، آ ⬅ ا)، والياء والألف المقصورة (ى ⬅ ي)، وإهمال التشكيل والتنوين والتطويل.</p>
+                  </div>
+                  <span class="badge badge-secondary" style="font-family: var(--font-mono); font-size: 0.75rem;">Normalized Substring LIKE</span>
+                </div>
+
+                <div class="search-sim-input-wrapper">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--muted-foreground);"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                  <input class="search-sim-input" type="text" value="المؤمن القوي خير واحب" readonly />
+                  <span class="badge badge-outline" style="font-size: 0.7rem;">بدون تشكيل</span>
+                </div>
+
+                <div class="search-result-item">
+                  <div class="search-result-head">
+                    <span style="font-weight: 700; color: var(--foreground);">صحيح مسلم — كتاب القدر (أثر #2664)</span>
+                    <span class="badge badge-secondary" style="font-size: 0.7rem;">مطابقة تامة للتطبيع</span>
+                  </div>
+                  <p style="font-family: var(--font-serif); font-size: 1.15rem; line-height: 1.9; color: var(--foreground);">
+                    عَنْ أَبِي هُرَيْرَةَ قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «<span class="search-highlight">الْمُؤْمِنُ الْقَوِيُّ خَيْرٌ وَأَحَبُّ</span> إِلَى اللَّهِ مِنَ الْمُؤْمِنِ الضَّعِيفِ، وَفِي كُلٍّ خَيْرٌ، احْرِصْ عَلَى مَا يَنْفَعُكَ، وَاسْتَعِنْ بِاللَّهِ وَلَا تَعْجَزْ...»
+                  </p>
+                  <div style="font-size: 0.75rem; color: var(--muted-foreground); display: flex; gap: 1rem; border-top: 1px solid var(--border); padding-top: 0.5rem;">
+                    <span>✓ طابق كلمة <code>الْمُؤْمِنُ</code> مع <code>المؤمن</code></span>
+                    <span>✓ طابق <code>وَأَحَبُّ</code> مع <code>واحب</code></span>
+                    <span>✓ أهمل الضمة والفتحة والشدة والتنوين</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mode 2 Pane: FTS5 BM25 -->
+            <div id="mode-fts" class="search-mode-tab-pane">
+              <div class="search-sim-box">
+                <div class="search-sim-header">
+                  <div>
+                    <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--foreground); margin-bottom: 0.25rem;">البحث الفوري الذكي بفهارس النص الكامل (FTS5 + BM25)</h3>
+                    <p style="font-size: 0.8125rem; color: var(--muted-foreground);">فهارس النص الكامل المدمجة مع خوارزمية ترتيب الصلة BM25 ودعم المعاملات المنطقية <code>AND</code> و <code>OR</code> و <code>NOT</code> والعبارات المقتبسة.</p>
+                  </div>
+                  <span class="badge badge-default" style="background-color: var(--primary); font-family: var(--font-mono); font-size: 0.75rem;">سرعة &lt; 5ms عبر 100+ كتاب</span>
+                </div>
+
+                <div class="search-sim-input-wrapper">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--muted-foreground);"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                  <input class="search-sim-input" type="text" value='"طلب العلم" OR فريضة' readonly />
+                  <span class="badge badge-secondary" style="font-size: 0.7rem;">BM25 Ranked</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                  <div class="search-result-item">
+                    <div class="search-result-head">
+                      <span style="font-weight: 700; color: var(--foreground);">سنن ابن ماجه — المقدمة (أثر #224)</span>
+                      <span class="badge badge-secondary" style="font-size: 0.7rem; color: var(--grade-strong);">أعلى صلة BM25: 9.84</span>
+                    </div>
+                    <p style="font-family: var(--font-serif); font-size: 1.1rem; line-height: 1.85; color: var(--foreground);">
+                      عَنْ أَنَسِ بْنِ مَالِكٍ قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «<span class="search-highlight">طَلَبُ الْعِلْمِ فَرِيضَةٌ</span> عَلَى كُلِّ مُسْلِمٍ، وَوَاضِعُ الْعِلْمِ عِنْدَ غَيْرِ أَهْلِهِ كَمُقَلِّدِ الْخَنَازِيرِ الْجَوْهَرَ وَاللُّؤْلُؤَ وَالذَّهَبَ.»
+                    </p>
+                  </div>
+                  <div class="search-result-item">
+                    <div class="search-result-head">
+                      <span style="font-weight: 700; color: var(--foreground);">جامع بيان العلم وفضله لابن عبد البر (أثر #14)</span>
+                      <span class="badge badge-secondary" style="font-size: 0.7rem;">صلة BM25: 8.62</span>
+                    </div>
+                    <p style="font-family: var(--font-serif); font-size: 1.1rem; line-height: 1.85; color: var(--foreground);">
+                      عَنْ عَلِيِّ بْنِ أَبِي طَالِبٍ قَالَ: «<span class="search-highlight">طَلَبُ الْعِلْمِ</span> أَفْضَلُ مِنَ الصَّلَاةِ وَالصِّيَامِ وَالْحَجِّ وَالْجِهَادِ فِي سَبِيلِ اللَّهِ عَزَّ وَجَلَّ.»
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mode 3 Pane: Chain Search -->
+            <div id="mode-chain" class="search-mode-tab-pane">
+              <div class="search-sim-box">
+                <div class="search-sim-header">
+                  <div>
+                    <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--foreground); margin-bottom: 0.25rem;">بحث سلاسل الرواة المتتابعة (Chains Order)</h3>
+                    <p style="font-size: 0.8125rem; color: var(--muted-foreground);">استخراج الأحاديث التي رواها راوٍ عن شيخه المحدد بالترتيب الزمني الصارم (تلميذ ⬅ شيخ ⬅ شيخ الشيخ) مع درجات الجرح والتعديل.</p>
+                  </div>
+                  <span class="badge badge-secondary" style="font-family: var(--font-mono); font-size: 0.75rem;">Isnad Chronological Match</span>
+                </div>
+
+                <div style="background: var(--muted); padding: 0.875rem 1rem; border-radius: var(--radius); border: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                  <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                    <span style="font-size: 0.8125rem; font-weight: 700; color: var(--muted-foreground);">السلسلة الذهبية:</span>
+                    <span class="badge badge-outline" style="font-size: 0.8125rem; padding: 0.25rem 0.65rem;">
+                      <strong style="color: var(--primary);">1.</strong> مالك بن أنس
+                    </span>
+                    <span style="color: var(--primary); font-weight: 700;">⬅</span>
+                    <span class="badge badge-outline" style="font-size: 0.8125rem; padding: 0.25rem 0.65rem;">
+                      <strong style="color: var(--primary);">2.</strong> نافع مولى ابن عمر
+                    </span>
+                    <span style="color: var(--primary); font-weight: 700;">⬅</span>
+                    <span class="badge badge-outline" style="font-size: 0.8125rem; padding: 0.25rem 0.65rem;">
+                      <strong style="color: var(--primary);">3.</strong> عبد الله بن عمر رضي الله عنهما
+                    </span>
+                  </div>
+                  <span class="badge badge-default" style="font-size: 0.75rem; background-color: var(--primary);">1,420 أثراً مطابقاً</span>
+                </div>
+
+                <div class="search-result-item">
+                  <div class="search-result-head">
+                    <span style="font-weight: 700; color: var(--foreground);">موطأ مالك — كتاب صلاة الجماعة (أثر #15)</span>
+                    <span class="badge badge-secondary" style="font-size: 0.7rem;">سلسلة ذهبية صحيحة</span>
+                  </div>
+                  <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 0.25rem;">
+                    عَنْ <span class="rawy-token grade-strong">مَالِكٍ</span>، عَنْ <span class="rawy-token grade-strong">نَافِعٍ</span>، عَنْ <span class="rawy-token grade-companion">عَبْدِ اللَّهِ بْنِ عُمَرَ</span>:
+                  </p>
+                  <p style="font-family: var(--font-serif); font-size: 1.15rem; line-height: 1.85; color: var(--foreground);">
+                    «أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: <span class="search-highlight">صَلَاةُ الْجَمَاعَةِ تَفْضُلُ صَلَاةَ الْفَذِّ بِسَبْعٍ وَعِشْرِينَ دَرَجَةً</span>.»
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mode 4 Pane: Takhrij LCS Diff -->
+            <div id="mode-takhrij" class="search-mode-tab-pane">
+              <div class="search-sim-box">
+                <div class="search-sim-header">
+                  <div>
+                    <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--foreground); margin-bottom: 0.25rem;">التخريج والمقارنة اللفظية الدقيقة (LCS Diff)</h3>
+                    <p style="font-size: 0.8125rem; color: var(--muted-foreground);">اكتشاف الروايات الموازية بين كتب الحديث مع حساب نسبة التشابه وتلوين الزيادات اللفظية بالأخضر والنواقص بالأحمر.</p>
+                  </div>
+                  <span class="badge badge-secondary" style="font-family: var(--font-mono); font-size: 0.75rem;">Longest Common Subsequence</span>
+                </div>
+
+                <div class="diff-display">
+                  <div class="diff-pane">
+                    <div class="diff-pane-head">
+                      <span class="diff-pane-title">صحيح البخاري — أثر #1 (الأصل)</span>
+                      <span class="badge badge-secondary" style="font-size: 0.7rem;">الرواية المرجعية</span>
+                    </div>
+                    <div class="diff-text">
+                      إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا، فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ.
+                    </div>
+                  </div>
+                  <div class="diff-pane">
+                    <div class="diff-pane-head">
+                      <span class="diff-pane-title">صحيح مسلم — أثر #1907 (المقارن)</span>
+                      <span class="badge badge-default" style="background-color: var(--diff-add-bg); color: var(--diff-add-fg); font-size: 0.7rem;">94% تطابق لفظي</span>
+                    </div>
+                    <div class="diff-text">
+                      إِنَّمَا الأَعْمَالُ <span class="diff-add">بِالنِّيَّةِ</span>، وَإِنَّمَا <span class="diff-del">لِامْرِئٍ</span> <span class="diff-add">لِكُلِّ امْرِئٍ</span> مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى <span class="diff-add">اللهِ وَرَسُولِهِ فَهِجْرَتُهُ إِلَى اللهِ وَرَسُولِهِ، وَمَنْ كَانَتْ هِجْرَتُهُ لِدُنْيَا</span> يُصِيبُهَا أَوْ <span class="diff-add">امْرَأَةٍ</span> يَتَزَوَّجُهَا، فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Interactive Showcase Tabs Section (100% Authentic Real Data) -->
+      <section id="showcase" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="badge badge-secondary">استكشف المكونات الحية</span>
+            <h2 class="section-title">تجربة حية لأهم شاشات التطبيق</h2>
+            <p class="section-desc">مكونات حقيقية مأخوذة مباشرة من محرك وقواعد بيانات جامع كتب الأثر ببيانات حديثية موثقة.</p>
+          </div>
+
+          <div class="tabs">
+            <!-- Tabs Navigation -->
+            <div class="tabs-list">
+              <button class="tabs-trigger active" data-target="tab-reader" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                <span>قارئ الأثر والمتون</span>
+              </button>
+              <button class="tabs-trigger" data-target="tab-isnad" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"/><circle cx="6" cy="19" r="3"/><circle cx="18" cy="19" r="3"/><path d="M12 8v4"/><path d="m8.5 14.5 2 2.5"/><path d="m15.5 14.5-2 2.5"/></svg>
+                <span>شجرة الإسناد والمدار</span>
+              </button>
+              <button class="tabs-trigger" data-target="tab-takhrij" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5"/><path d="M4 20L21 3"/></svg>
+                <span>التخريج ومقارنة الألفاظ</span>
+              </button>
+              <button class="tabs-trigger" data-target="tab-narrator" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                <span>موسوعة تراجم الرواة</span>
+              </button>
+              <button class="tabs-trigger" data-target="tab-chain" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <span>سلاسل الرواة والبحث الذكي</span>
+              </button>
+            </div>
+
+            <!-- Tab 1: Reader View (Real Hadith: Sahih Muslim #35) -->
+            <div id="tab-reader" class="tabs-content active">
+              <div class="card" style="padding: 1.5rem;">
+                <div class="narration-card" style="border:none;box-shadow:none;padding:0;">
+                  <div class="narration-header">
+                    <span class="narration-book-badge">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                      صحيح مسلم — كتاب الإيمان
+                    </span>
+                    <div style="display: flex; align-items: center; gap: 0.375rem;">
+                      <span class="badge badge-default" style="font-size: 0.7rem;">35</span>
+                      <span class="narration-number">أثر رقم #35</span>
+                    </div>
+                  </div>
+                  <div class="narration-subject">
+                    باب: بَيَانُ شُعَبِ الْإِيمَانِ وَأَفْضَلِهَا وَأَدْنَاهَا وَفَضِيلَةِ الْحَيَاءِ
+                  </div>
+                  <div class="narration-isnad">
+                    حَدَّثَنَا <span class="rawy-token grade-strong" data-narrator-id="7">عُبَيْدُ اللَّهِ بْنُ سَعِيدٍ</span>، وَ<span class="rawy-token grade-strong" data-narrator-id="8">عَبْدُ بْنُ حُمَيْدٍ</span>، قَالَا: حَدَّثَنَا <span class="rawy-token grade-strong" data-narrator-id="9">أَبُو عَامِرٍ الْعَقَدِيُّ</span>، حَدَّثَنَا <span class="rawy-token grade-strong" data-narrator-id="10">سُلَيْمَانُ بْنُ بِلَالٍ</span>، عَنْ <span class="rawy-token grade-strong" data-narrator-id="11">عَبْدِ اللَّهِ بْنِ دِينَارٍ</span>، عَنْ <span class="rawy-token grade-strong" data-narrator-id="12">أَبِي صَالِحٍ</span>، عَنْ <span class="rawy-token grade-companion" data-narrator-id="13">أَبِي هُرَيْرَةَ</span> رَضِيَ اللَّهُ عَنْهُ عَنِ النَّبِيِّ ﷺ قَالَ:
+                  </div>
+                  <div class="narration-matn">
+                    «الْإِيمَانُ بِضْعٌ وَسَبْعُونَ - أَوْ بِضْعٌ وَسِتُّونَ - شُعْبَةً، فَأَفْضَلُهَا قَوْلُ: لَا إِلَهَ إِلَّا اللَّهُ، وَأَدْنَاهَا إِمَاطَةُ الْأَذَى عَنِ الطَّرِيقِ، وَالْحَيَاءُ شُعْبَةٌ مِنَ الْإِيمَانِ.»
+                  </div>
+                  <div style="border-top: 1px solid var(--border); padding-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.375rem;">
+                    <span class="badge badge-outline rawy-token" data-narrator-id="9" style="font-size: 0.75rem;">
+                      أبو عامر العقدي (عبد الملك) <span class="badge badge-secondary" style="color: var(--grade-strong); font-size: 0.65rem;">ثقة ثبت</span>
+                    </span>
+                    <span class="badge badge-outline rawy-token" data-narrator-id="10" style="font-size: 0.75rem;">
+                      سليمان بن بلال القرشي <span class="badge badge-secondary" style="color: var(--grade-strong); font-size: 0.65rem;">ثقة حجة</span>
+                    </span>
+                    <span class="badge badge-outline rawy-token" data-narrator-id="11" style="font-size: 0.75rem;">
+                      عبد الله بن دينار العدوي <span class="badge badge-secondary" style="color: var(--grade-strong); font-size: 0.65rem;">ثقة ثبت</span>
+                    </span>
+                    <span class="badge badge-outline rawy-token" data-narrator-id="12" style="font-size: 0.75rem;">
+                      أبو صالح السمان (ذكوان) <span class="badge badge-secondary" style="color: var(--grade-strong); font-size: 0.65rem;">ثقة ثبت</span>
+                    </span>
+                    <span class="badge badge-outline rawy-token" data-narrator-id="13" style="font-size: 0.75rem;">
+                      أبو هريرة رضي الله عنه <span class="badge badge-secondary" style="color: var(--grade-companion); font-size: 0.65rem;">صحابي جليل</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 2: Isnad Tree View (Real Pivot Tree: Hadith al-Niyyah) -->
+            <div id="tab-isnad" class="tabs-content">
+              <div class="card" style="padding: 1.5rem;">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem;">
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="badge badge-default">حديث: إنما الأعمال بالنيات</span>
+                    <span class="badge badge-outline">5 أسانيد صحاح متلاقية عند المدار</span>
+                  </div>
+                  <button class="btn btn-outline btn-sm copy-btn" type="button" data-code="شجرة إسناد حديث إنما الأعمال بالنيات (المدار: يحيى بن سعيد الأنصاري)">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    نسخ بيانات الشجرة
+                  </button>
+                </div>
+
+                <!-- Visual Multi-Chain Isnad Tree -->
+                <div class="isnad-tree-multichain">
+                  <div class="tree-node">
+                    <div class="tree-node-info">
+                      <span class="tree-node-name">رسول الله ﷺ</span>
+                      <span class="tree-node-meta">سيد المرسلين وإمام النبيين</span>
+                    </div>
+                    <span class="badge badge-default" style="background-color: var(--grade-companion); color: #ffffff;">النبوة</span>
+                  </div>
+                  <div class="tree-node-connector">⬇</div>
+
+                  <div class="tree-node">
+                    <div class="tree-node-info">
+                      <span class="tree-node-name">عمر بن الخطاب رضي الله عنه</span>
+                      <span class="tree-node-meta">أمير المؤمنين · ت: 23 هـ (المدينة المنورة)</span>
+                    </div>
+                    <span class="badge badge-default" style="background-color: var(--grade-companion); color: #ffffff;">صحابي جليل</span>
+                  </div>
+                  <div class="tree-node-connector">⬇</div>
+
+                  <div class="tree-node">
+                    <div class="tree-node-info">
+                      <span class="tree-node-name">علقمة بن وقاص الليثي</span>
+                      <span class="tree-node-meta">الطبقة الثالثة — كبار التابعين</span>
+                    </div>
+                    <span class="badge badge-default" style="background-color: var(--grade-strong); color: #ffffff;">ثقة ثبت</span>
+                  </div>
+                  <div class="tree-node-connector">⬇</div>
+
+                  <div class="tree-node">
+                    <div class="tree-node-info">
+                      <span class="tree-node-name">محمد بن إبراهيم بن الحارث التيمي</span>
+                      <span class="tree-node-meta">الطبقة الرابعة — أوساط التابعين · ت: 120 هـ</span>
+                    </div>
+                    <span class="badge badge-default" style="background-color: var(--grade-strong); color: #ffffff;">ثقة ثبت جليل</span>
+                  </div>
+                  <div class="tree-node-connector">⬇</div>
+
+                  <!-- Pivot Narrator (المدار) -->
+                  <div class="tree-node pivot">
+                    <div class="tree-node-info">
+                      <span class="tree-node-name" style="color: var(--grade-pivot);">🌟 يحيى بن سعيد الأنصاري (مدار الحديث الرئيسي)</span>
+                      <span class="tree-node-meta">الطبقة الخامسة · ت: 143 هـ — التقت عنده أسانيد الأئمة المصنفين</span>
+                    </div>
+                    <span class="badge badge-default" style="background-color: var(--grade-pivot); color: #ffffff;">مدار الإسناد</span>
+                  </div>
+
+                  <!-- Multi-Branch Sub-Chains Grid -->
+                  <div class="tree-branches-container">
+                    <div class="tree-branches-head">
+                      <span>تفرع الروايات من مدار الحديث (يحيى بن سعيد الأنصاري) إلى كتب السنة</span>
+                    </div>
+
+                    <div class="tree-branches-grid">
+                      <!-- Branch 1: Bukhari -->
+                      <div class="tree-branch-col">
+                        <div class="tree-branch-header">
+                          <span>صحيح البخاري</span>
+                          <span class="badge badge-secondary" style="font-size: 0.7rem;">أثر #1</span>
+                        </div>
+                        <div class="tree-node" style="padding: 0.4rem 0.6rem;">
+                          <span class="tree-node-name" style="font-size: 0.78rem;">سفيان بن عيينة</span>
+                        </div>
+                        <div class="tree-node-connector">⬇</div>
+                        <div class="tree-node" style="padding: 0.4rem 0.6rem;">
+                          <span class="tree-node-name" style="font-size: 0.78rem;">عبد الله بن الزبير الحميدي</span>
+                        </div>
+                        <div class="tree-node-connector">⬇</div>
+                        <div class="tree-node" style="padding: 0.4rem 0.6rem; border-color: var(--primary); background: var(--card);">
+                          <span class="tree-node-name" style="font-size: 0.78rem; color: var(--primary); font-weight: 700;">الإمام البخاري</span>
+                        </div>
+                      </div>
+
+                      <!-- Branch 2: Muslim -->
+                      <div class="tree-branch-col">
+                        <div class="tree-branch-header">
+                          <span>صحيح مسلم</span>
+                          <span class="badge badge-secondary" style="font-size: 0.7rem;">أثر #1907</span>
+                        </div>
+                        <div class="tree-node" style="padding: 0.4rem 0.6rem;">
+                          <span class="tree-node-name" style="font-size: 0.78rem;">سفيان بن عيينة</span>
+                        </div>
+                        <div class="tree-node-connector">⬇</div>
+                        <div class="tree-node" style="padding: 0.4rem 0.6rem;">
+                          <span class="tree-node-name" style="font-size: 0.78rem;">محمد بن عباد المكي</span>
+                        </div>
+                        <div class="tree-node-connector">⬇</div>
+                        <div class="tree-node" style="padding: 0.4rem 0.6rem; border-color: var(--primary); background: var(--card);">
+                          <span class="tree-node-name" style="font-size: 0.78rem; color: var(--primary); font-weight: 700;">الإمام مسلم</span>
+                        </div>
+                      </div>
+
+                      <!-- Branch 3: Abu Dawud -->
+                      <div class="tree-branch-col">
+                        <div class="tree-branch-header">
+                          <span>سنن أبي داود</span>
+                          <span class="badge badge-secondary" style="font-size: 0.7rem;">أثر #2201</span>
+                        </div>
+                        <div class="tree-node" style="padding: 0.4rem 0.6rem;">
+                          <span class="tree-node-name" style="font-size: 0.78rem;">مالك بن أنس</span>
+                        </div>
+                        <div class="tree-node-connector">⬇</div>
+                        <div class="tree-node" style="padding: 0.4rem 0.6rem;">
+                          <span class="tree-node-name" style="font-size: 0.78rem;">عبد الله بن مسلمة القعنبي</span>
+                        </div>
+                        <div class="tree-node-connector">⬇</div>
+                        <div class="tree-node" style="padding: 0.4rem 0.6rem; border-color: var(--primary); background: var(--card);">
+                          <span class="tree-node-name" style="font-size: 0.78rem; color: var(--primary); font-weight: 700;">الإمام أبو داود</span>
+                        </div>
+                      </div>
+
+                      <!-- Branch 4: Al-Nasa'i -->
+                      <div class="tree-branch-col">
+                        <div class="tree-branch-header">
+                          <span>سنن النسائي</span>
+                          <span class="badge badge-secondary" style="font-size: 0.7rem;">أثر #75</span>
+                        </div>
+                        <div class="tree-node" style="padding: 0.4rem 0.6rem;">
+                          <span class="tree-node-name" style="font-size: 0.78rem;">حماد بن زيد</span>
+                        </div>
+                        <div class="tree-node-connector">⬇</div>
+                        <div class="tree-node" style="padding: 0.4rem 0.6rem;">
+                          <span class="tree-node-name" style="font-size: 0.78rem;">مسدد بن مسرهد</span>
+                        </div>
+                        <div class="tree-node-connector">⬇</div>
+                        <div class="tree-node" style="padding: 0.4rem 0.6rem; border-color: var(--primary); background: var(--card);">
+                          <span class="tree-node-name" style="font-size: 0.78rem; color: var(--primary); font-weight: 700;">الإمام النسائي</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 3: Takhrij & Word Diff View (Real Comparison: Bukhari 1 vs Muslim 1907) -->
+            <div id="tab-takhrij" class="tabs-content">
+              <div class="card" style="padding: 1.5rem;">
+                <div class="diff-display">
+                  <div class="diff-pane">
+                    <div class="diff-pane-head">
+                      <span class="diff-pane-title">صحيح البخاري — أثر #1</span>
+                      <span class="badge badge-secondary" style="font-size: 0.75rem;">الأصل المقارن</span>
+                    </div>
+                    <div class="diff-text">
+                      إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا، فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ.
+                    </div>
+                  </div>
+                  <div class="diff-pane">
+                    <div class="diff-pane-head">
+                      <span class="diff-pane-title">صحيح مسلم — أثر #1907</span>
+                      <span class="badge badge-default" style="background-color: var(--diff-add-bg); color: var(--diff-add-fg); font-size: 0.75rem;">94% تطابق لفظي</span>
+                    </div>
+                    <div class="diff-text">
+                      إِنَّمَا الْأَعْمَالُ <span class="diff-add">بِالنِّيَّةِ</span>، وَإِنَّمَا <span class="diff-del">لِامْرِئٍ</span> <span class="diff-add">لِكُلِّ امْرِئٍ</span> مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى <span class="diff-add">اللهِ وَرَسُولِهِ فَهِجْرَتُهُ إِلَى اللهِ وَرَسُولِهِ، وَمَنْ كَانَتْ هِجْرَتُهُ لِدُنْيَا</span> يُصِيبُهَا أَوْ <span class="diff-add">امْرَأَةٍ</span> يَتَزَوَّجُهَا، فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 4: Narrator Biography View (Real Biography: Sufyan ibn 'Uyayna) -->
+            <div id="tab-narrator" class="tabs-content">
+              <div class="card" style="padding: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem;">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
+                  <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--foreground);">سفيان بن عيينة بن ميمون الهلالي</h3>
+                    <p style="font-size: 0.8125rem; color: var(--muted-foreground);">أبو محمد الكوفي ثم المكي · كبار أتباع التابعين (الطبقة 8)</p>
+                  </div>
+                  <span class="badge badge-default" style="background-color: var(--grade-strong); color: #ffffff; font-size: 0.8125rem; padding: 0.35rem 0.85rem;">ثقة ثبت حافظ إمام حجة</span>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem;">
+                  <div style="background: var(--muted); padding: 0.75rem 1rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                    <span style="font-size: 0.75rem; color: var(--muted-foreground); display: block;">سنة ومكان الوفاة:</span>
+                    <strong style="font-size: 0.9375rem; color: var(--foreground);">198 هـ — مكة المكرمة</strong>
+                  </div>
+                  <div style="background: var(--muted); padding: 0.75rem 1rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                    <span style="font-size: 0.75rem; color: var(--muted-foreground); display: block;">عدد شيوخه المترجمين:</span>
+                    <strong style="font-size: 0.9375rem; color: var(--foreground);">184 شيخاً</strong>
+                  </div>
+                  <div style="background: var(--muted); padding: 0.75rem 1rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                    <span style="font-size: 0.75rem; color: var(--muted-foreground); display: block;">عدد تلاميذه والرواة عنه:</span>
+                    <strong style="font-size: 0.9375rem; color: var(--foreground);">265 تلميذاً</strong>
+                  </div>
+                </div>
+
+                <div style="background: var(--muted); padding: 1rem 1.25rem; border-radius: var(--radius); border: 1px solid var(--border); border-right: 3px solid var(--primary);">
+                  <strong style="font-size: 0.875rem; display: block; margin-bottom: 0.5rem; color: var(--foreground);">أقوال أئمة الجرح والتعديل الموثقة:</strong>
+                  <ul style="list-style: disc; padding-right: 1.25rem; font-size: 0.875rem; line-height: 1.7; color: var(--foreground);">
+                    <li><strong>أحمد بن حنبل:</strong> «سفيان بن عيينة إمام في الحديث، ما رأيت أحداً أعلم بالسنن منه».</li>
+                    <li><strong>يحيى بن معين:</strong> «هو أثبت الناس في عمرو بن دينار وفي الزهري، ثقة مأمون».</li>
+                    <li><strong>الشافعي:</strong> «لولا مالك وسفيان بن عيينة لذهب علم الحجاز».</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 5: Chain Search Simulator (Real Golden Chain: Malik -> Nafi' -> Ibn 'Umar) -->
+            <div id="tab-chain" class="tabs-content">
+              <div class="card" style="padding: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem;">
+                <div>
+                  <h4 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--foreground);">البحث بترتيب سلاسل الرواة المتتابعة</h4>
+                  <p style="font-size: 0.875rem; color: var(--muted-foreground);">
+                    اختر الرواة بترتيب تتابع الإسناد الدقيق (تلميذ ⬅ شيخ) لاستخراج كافة الأحاديث المروية بهذا السند عبر جميع كتب السنة.
+                  </p>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; background: var(--muted); padding: 0.875rem 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                  <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                    <span style="font-size: 0.8125rem; font-weight: 700; color: var(--muted-foreground);">السلسلة المختارة:</span>
+                    <div id="chain-chips-container" style="display: flex; align-items: center; gap: 0.375rem; flex-wrap: wrap;"></div>
+                  </div>
+                  <button id="add-chain-narrator-btn" class="btn btn-primary btn-sm" type="button">
+                    <span>+ إضافة راوٍ للسلسلة</span>
+                  </button>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--muted); border-radius: var(--radius); border: 1px solid var(--border);">
+                  <span style="font-size: 0.875rem; font-weight: 600; color: var(--primary);" id="chain-result-count">1,420 أثراً مطابقاً بنفس الترتيب</span>
+                  <span style="font-size: 0.8125rem; color: var(--muted-foreground);">تم الفحص في الموطأ والصحيحين والسنن</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Jarh wa Ta'deel 7-tier Classification Matrix Section -->
+      <section id="jarh-matrix" class="section section-alt">
+        <div class="container">
+          <div class="section-head">
+            <span class="badge badge-secondary">موسوعة الرواة والتراجم</span>
+            <h2 class="section-title">مصفوفة مراتب الجرح والتعديل السبعة</h2>
+            <p class="section-desc">تصنيف بصري دقيق معتمد على قواعد أئمة الحديث لتمييز مراتب الرواة وحال الأسانيد فورياً.</p>
+          </div>
+
+          <div class="matrix-grid">
+            <div class="matrix-item">
+              <span class="matrix-dot" style="background-color: var(--grade-companion);"></span>
+              <div>
+                <strong style="font-size: 0.9375rem; color: var(--foreground); display: block;">الصحابة رضي الله عنهم</strong>
+                <span style="font-size: 0.8rem; color: var(--muted-foreground);">عدول بتعديل الله ورسوله</span>
+              </div>
+            </div>
+
+            <div class="matrix-item">
+              <span class="matrix-dot" style="background-color: var(--grade-strong);"></span>
+              <div>
+                <strong style="font-size: 0.9375rem; color: var(--foreground); display: block;">ثقة / ثبت / حافظ / حجة</strong>
+                <span style="font-size: 0.8rem; color: var(--muted-foreground);">أعلى مراتب الضبط والعدالة</span>
+              </div>
+            </div>
+
+            <div class="matrix-item">
+              <span class="matrix-dot" style="background-color: var(--grade-acceptable);"></span>
+              <div>
+                <strong style="font-size: 0.9375rem; color: var(--foreground); display: block;">صدوق / حسن الحديث</strong>
+                <span style="font-size: 0.8rem; color: var(--muted-foreground);">مقبول يحتج بحديثه في رتبة الحسن</span>
+              </div>
+            </div>
+
+            <div class="matrix-item">
+              <span class="matrix-dot" style="background-color: var(--grade-weak);"></span>
+              <div>
+                <strong style="font-size: 0.9375rem; color: var(--foreground); display: block;">ضعيف / لين الحديث</strong>
+                <span style="font-size: 0.8rem; color: var(--muted-foreground);">سوء حفظ يسير أو خفة ضبط</span>
+              </div>
+            </div>
+
+            <div class="matrix-item">
+              <span class="matrix-dot" style="background-color: var(--grade-veryWeak);"></span>
+              <div>
+                <strong style="font-size: 0.9375rem; color: var(--foreground); display: block;">متروك / واهٍ جداً</strong>
+                <span style="font-size: 0.8rem; color: var(--muted-foreground);">شديد الضعف لا ينجبر في الشواهد</span>
+              </div>
+            </div>
+
+            <div class="matrix-item">
+              <span class="matrix-dot" style="background-color: var(--grade-fabricator);"></span>
+              <div>
+                <strong style="font-size: 0.9375rem; color: var(--foreground); display: block;">كذاب / وضاع</strong>
+                <span style="font-size: 0.8rem; color: var(--muted-foreground);">ساقط الرواية متهم بوضع الحديث</span>
+              </div>
+            </div>
+
+            <div class="matrix-item">
+              <span class="matrix-dot" style="background-color: var(--grade-unknown);"></span>
+              <div>
+                <strong style="font-size: 0.9375rem; color: var(--foreground); display: block;">مجهول / مستور</strong>
+                <span style="font-size: 0.8rem; color: var(--muted-foreground);">لم تثبت عدالته أو انقطعت ترجمته</span>
+              </div>
+            </div>
+
+            <div class="matrix-item">
+              <span class="matrix-dot" style="background-color: var(--grade-pivot);"></span>
+              <div>
+                <strong style="font-size: 0.9375rem; color: var(--foreground); display: block;">مدار الحديث (محور الإسناد)</strong>
+                <span style="font-size: 0.8rem; color: var(--muted-foreground);">الراوي الذي التقت عنده أسانيد الأئمة</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Social Image Card Export Preview Mockup Section -->
+      <section id="image-card" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="badge badge-secondary">تصدير عالي الجودة</span>
+            <h2 class="section-title">بطاقات أثر فاخرة لمشاركتها على شبكات التواصل</h2>
+            <p class="section-desc">ميزة مدمجة تتيح لك تصدير أي حديث بضغطة زر كبطاقة صورة أنيقة وجاهزة للمشاركة.</p>
+          </div>
+
+          <div style="max-width: 700px; margin-inline: auto;">
+            <div class="image-export-preview">
+              <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 0.75rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <img src="public/app-icon.svg" width="22" height="22" alt="" />
+                  <span style="font-size: 0.85rem; font-weight: 700;">جامع كتب الأثر — <bdi>Athar</bdi></span>
+                </div>
+                <span style="font-size: 0.75rem; color: var(--muted-foreground);">صحيح البخاري [1]</span>
+              </div>
+
+              <div style="font-size: 0.85rem; color: var(--muted-foreground); line-height: 1.7;">
+                عَنْ <span style="color: var(--grade-companion); font-weight: 700;">عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ</span> قَالَ: سَمِعْتُ رَسُولَ اللَّهِ ﷺ يَقُولُ:
+              </div>
+
+              <div style="font-family: var(--font-serif); font-size: 1.45rem; line-height: 2; font-weight: 700; color: var(--foreground); text-align: center; padding: 1rem; background: var(--muted); border-radius: var(--radius);">
+                «إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا، فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ.»
+              </div>
+
+              <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem; color: var(--muted-foreground); border-top: 1px solid var(--border); padding-top: 0.75rem;">
+                <span>كتاب بدء الوحي · باب كيف كان بدء الوحي</span>
+                <span>athar-online.vercel.app</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Interactive Takhrij Simulator Section -->
       <section id="demo" class="section section-alt">
         <div class="container">
           <div class="section-head">
-            <span class="section-pill">تجربة حية تفاعلية</span>
+            <span class="badge badge-secondary">تجربة حية تفاعلية</span>
             <h2 class="section-title">محاكي التخريج ومقارنة الألفاظ</h2>
-            <p class="section-desc">جرب بنفسك كيف يقوم ��لتطبيق بمقارنة متون الأحاديث وإبراز الزيادات والنواقص وفروق الألفاظ فورياً.</p>
+            <p class="section-desc">جرب بنفسك كيف يقوم التطبيق بمقارنة متون الأحاديث وإبراز الزيادات والنواقص وفروق الألفاظ فورياً.</p>
           </div>
 
-          <div class="demo-box">
-            <div class="demo-selector">
-              <span style="font-weight: 700; font-size: 0.9rem; margin-left: 8px;">اختر نموذجاً:</span>
-              <button class="demo-btn active" data-case="niyyah">إنما الأعمال بالنيات</button>
-              <button class="demo-btn" data-case="iman">شعب الإيمان</button>
-              <button class="demo-btn" data-case="athar-umar">أثر عمر بن الخطاب</button>
+          <div class="card" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem;">
+            <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+              <span style="font-weight: 600; font-size: 0.875rem; margin-left: 0.5rem;">اختر نموذجاً:</span>
+              <button class="btn btn-outline btn-sm demo-btn active" data-case="niyyah" type="button">إنما الأعمال بالنيات</button>
+              <button class="btn btn-ghost btn-sm demo-btn" data-case="iman" type="button">شعب الإيمان</button>
+              <button class="btn btn-ghost btn-sm demo-btn" data-case="athar-umar" type="button">أثر عمر في التفقه</button>
             </div>
 
             <div class="diff-display">
@@ -274,7 +1164,7 @@
               <div class="diff-pane">
                 <div class="diff-pane-head">
                   <span id="demo-src-title" class="diff-pane-title">صحيح البخاري — رقم (1)</span>
-                  <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">الأثر الأساسي</span>
+                  <span class="badge badge-secondary" style="font-size: 0.75rem;">الأثر الأساسي</span>
                 </div>
                 <div id="demo-src-text" class="diff-text">
                   إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا، فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ.
@@ -285,7 +1175,7 @@
               <div class="diff-pane">
                 <div class="diff-pane-head">
                   <span id="demo-tgt-title" class="diff-pane-title">صحيح مسلم — رقم (1907)</span>
-                  <span id="demo-match-pill" class="diff-match-pill">94% تطابق</span>
+                  <span id="demo-match-pill" class="badge badge-default" style="background-color: var(--diff-add-bg); color: var(--diff-add-fg); font-size: 0.75rem;">94% تطابق</span>
                 </div>
                 <div id="demo-tgt-text" class="diff-text">
                   <!-- Filled dynamically by main.js -->
@@ -296,53 +1186,44 @@
         </div>
       </section>
 
-      <!-- App Showcase / Interactive Screenshot Tour -->
-      <section id="screens" class="section">
+      <!-- Isnad Tree Section Overview -->
+      <section id="isnad-tree" class="section">
         <div class="container">
           <div class="section-head">
-            <span class="section-pill">جولة مرئية</span>
-            <h2 class="section-title">استكشف واجهات التطبيق</h2>
-            <p class="section-desc">تصميم عربي مريح يجمع بين أصالة المحتوى وسلاسة برمجيات سطح المكتب الحديثة.</p>
+            <span class="badge badge-secondary">تحقيق الأسانيد والمدارات</span>
+            <h2 class="section-title">توليد شجرة الإسناد ورسم شبكات الرواة</h2>
+            <p class="section-desc">خوارزمية ذكية لاكتشاف المدارات المشتركة، ورسم اتصال الرواة بالسماع والإجازة مع شارات المراتب التقييمية للجرح والتعديل.</p>
           </div>
 
-          <div class="tour-nav">
-            <button class="tour-tab active" data-tour="home">الرئيسية</button>
-            <button class="tour-tab" data-tour="search">البحث الذكي</button>
-            <button class="tour-tab" data-tour="takhrij">التخريج والمقارنة</button>
-            <button class="tour-tab" data-tour="narration">قارئ الأثر</button>
-            <button class="tour-tab" data-tour="narrator">تراجم الرواة</button>
-            <button class="tour-tab" data-tour="jarh">الجرح والتعديل</button>
-            <button class="tour-tab" data-tour="allbooks">مستودع الكتب</button>
-            <button class="tour-tab" data-tour="downloadedbooks">مكتبتي</button>
-          </div>
-
-          <div class="tour-content">
-            <div class="tour-shot">
-              <img id="tour-img-light" class="theme-shot light" src="screenshots/light/home.png" alt="لقطة شاشة للتطبيق" width="600" loading="lazy" />
-              <img id="tour-img-dark" class="theme-shot dark" src="screenshots/dark/home.png" alt="لقطة شاشة للتطبيق في الوضع الداكن" width="600" loading="lazy" />
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+            <div class="card" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+              <div class="bento-card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+              </div>
+              <h3 class="card-title">اكتشاف مدار الإسناد تلقائياً</h3>
+              <p class="card-description">
+                يقوم التطبيق بتحليل كافة الروايات المخرجة وتحديد الراوي المدار الذي التقت عنده أسانيد الأئمة المصنفين، وإبراز تفرع الطرق عنه بدقة متناهية.
+              </p>
             </div>
 
-            <div class="tour-info">
-              <h3 id="tour-title">الشاشة الرئيسية</h3>
-              <p id="tour-desc">لوحة تحكم ترحيبية أنيقة تعرض «أثر اليوم»، إحصاءات مكتبتك، وسجل استئناف القراءة فورياً.</p>
-              <ul id="tour-features-list" class="tour-features">
-                <li>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>أثر يومي متجدد من كتبك المحملة مع زر تخريج مباشر بنقرة واحدة.</span>
-                </li>
-                <li>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>إحصاءات شاملة لعدد الكتب والرواة والروايات المتاحة في جهازك.</span>
-                </li>
-                <li>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>بطاقة «متابعة القراءة» للعودة الدقيقة لآخر كتاب كنت تقرؤه.</span>
-                </li>
-                <li>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>إظهار وإخفاء التشكيل بضغطة زر مع خيارات نسخ متعددة بالعزو.</span>
-                </li>
-              </ul>
+            <div class="card" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+              <div class="bento-card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3 class="card-title">تكامل فوري مع موسوعة التراجم</h3>
+              <p class="card-description">
+                انقر على أي عقدة في الشجرة لتظهر لك نافذة منبثقة تفاعلية ببيانات الراوي، طبقته، سنة وفاته، عدد شيوخه وتلاميذه، وخلاصة أقوال أئمة النقد فيه.
+              </p>
+            </div>
+
+            <div class="card" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+              <div class="bento-card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </div>
+              <h3 class="card-title">تصدير عالي الدقة (SVG / PNG)</h3>
+              <p class="card-description">
+                صدّر شجرة الإسناد بضغطة زر واحدة كصورة متجهة نقية صالحة للإدراج في البحوث الأكاديمية والرسائل العلمية بجودة طباعية كاملة.
+              </p>
             </div>
           </div>
         </div>
@@ -352,9 +1233,9 @@
       <section id="download" class="section section-alt">
         <div class="container">
           <div class="section-head">
-            <span class="section-pill">تحميل مباشر ومجاني</span>
+            <span class="badge badge-secondary">تحميل مباشر ومجاني</span>
             <h2 class="section-title">حمّل التطبيق لمنصتك</h2>
-            <p class="section-desc">متاح لكافة أنظمة التشغيل الرئيسية، ويتم تحديث ملفات التحميل تلقائياً مع كل إصدار جديد.</p>
+            <p class="section-desc">متاح لكافة أنظمة التشغيل الرئيسية، ويتم تحديث ملفات التحميل تلقائياً مع كل إصدار جديد في المستودع.</p>
           </div>
 
           <div class="download-grid">
@@ -365,22 +1246,22 @@
                   <div class="os-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10 4.6v6.9H3V5.5ZM11 4.5 21 3v8.5h-10V4.5ZM21 12.5v8.5l-10-1.5v-7h10ZM10 13.4v7l-7-1V13.4h7Z"/></svg>
                   </div>
-                  <span class="card-badge">ويندوز 10 / 11</span>
+                  <span class="badge badge-outline">ويندوز 10 / 11</span>
                 </div>
                 <h3 class="os-name">Windows</h3>
                 <p class="os-compat">متوافق مع معالجات Intel و AMD و Snapdragon ARM64</p>
               </div>
 
-              <div>
+              <div class="os-actions">
                 <a class="btn btn-primary os-primary-btn os-download-btn" href="#" target="_blank" rel="noopener">
                   تحميل نسخة x64 (.exe)
                 </a>
-                <div class="os-dropdown">
-                  <button class="os-dropdown-btn" type="button">
+                <div class="dropdown-container" style="width: 100%;">
+                  <button class="btn btn-outline os-dropdown-btn" type="button">
                     <span>جميع صيغ ويندوز</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                   </button>
-                  <ul class="os-dropdown-menu"></ul>
+                  <ul class="dropdown-menu" style="width: 100%;"></ul>
                 </div>
               </div>
             </article>
@@ -392,22 +1273,22 @@
                   <div class="os-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.7 19.5c-1.3 1.3-2.6 1.7-3.6 1.7-1.1 0-1.9-.4-3-.4-1.1 0-1.9.4-3 .4-1 0-2.5-.5-3.8-1.8C3.4 18 2.5 15.3 3.8 13.3c.9-1.4 2.4-2.2 3.9-2.2 1 0 2.2.5 2.9.5.7 0 2-.5 3.5-.5 1.5 0 2.6.6 3.4 1.7-3 1.8-2.5 6.4.5 7.7ZM15 7.2c.9-1.1 1.5-2.6 1.3-4.2-1.3.1-2.8.9-3.7 2-.8 1-2.5 1.5-2.5 4 1.4.1 2.9-.7 3.7-1.8Z"/></svg>
                   </div>
-                  <span class="card-badge">macOS 12.0+</span>
+                  <span class="badge badge-outline">macOS 12.0+</span>
                 </div>
                 <h3 class="os-name">macOS</h3>
                 <p class="os-compat">حزم أصلية لمعالجات Apple Silicon (M1/M2/M3/M4) و Intel</p>
               </div>
 
-              <div>
+              <div class="os-actions">
                 <a class="btn btn-primary os-primary-btn os-download-btn" href="#" target="_blank" rel="noopener">
                   تحميل Apple Silicon (.dmg)
                 </a>
-                <div class="os-dropdown">
-                  <button class="os-dropdown-btn" type="button">
+                <div class="dropdown-container" style="width: 100%;">
+                  <button class="btn btn-outline os-dropdown-btn" type="button">
                     <span>جميع صيغ ماك</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                   </button>
-                  <ul class="os-dropdown-menu"></ul>
+                  <ul class="dropdown-menu" style="width: 100%;"></ul>
                 </div>
               </div>
             </article>
@@ -419,22 +1300,22 @@
                   <div class="os-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10V8a2 2 0 0 1 2-2h1V4a2 2 0 0 1 4 0v2h2a2 2 0 0 1 2 2v2"/><path d="M4 10h12v2a2 2 0 0 1-2 2h-2v6h-4v-6H6a2 2 0 0 1-2-2v-2Z"/></svg>
                   </div>
-                  <span class="card-badge">Linux (x64 / ARM64)</span>
+                  <span class="badge badge-outline">Linux (x64 / ARM64)</span>
                 </div>
                 <h3 class="os-name">Linux</h3>
                 <p class="os-compat">حزم deb و rpm و AppImage و tar.gz لـ Arch Linux</p>
               </div>
 
-              <div>
+              <div class="os-actions">
                 <a class="btn btn-primary os-primary-btn os-download-btn" href="#" target="_blank" rel="noopener">
                   تحميل الأرشيف المحمول (.tar.gz)
                 </a>
-                <div class="os-dropdown">
-                  <button class="os-dropdown-btn" type="button">
+                <div class="dropdown-container" style="width: 100%;">
+                  <button class="btn btn-outline os-dropdown-btn" type="button">
                     <span>جميع حزم لينكس</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                   </button>
-                  <ul class="os-dropdown-menu"></ul>
+                  <ul class="dropdown-menu" style="width: 100%;"></ul>
                 </div>
               </div>
             </article>
@@ -442,31 +1323,114 @@
 
           <!-- Terminal Snippet Box (Arch Linux) -->
           <div class="terminal-box">
-            <div class="terminal-head">
-              <span class="terminal-label">تثبيت سريع لمستخدمي Arch Linux (عبر الأرشيف المحمول):</span>
+            <span class="terminal-head">تثبيت سريع لمستخدمي Arch Linux (عبر الأرشيف المحمول):</span>
+            <div class="terminal-code-wrapper">
+              <code class="terminal-code" id="terminal-code-text">tar -xf Athar_1448.23.3_amd64.tar.gz --one-top-level && cd Athar_1448.23.3_amd64 && makepkg -si</code>
+              <button class="btn btn-secondary btn-sm copy-btn" type="button" data-code="tar -xf Athar_1448.23.3_amd64.tar.gz --one-top-level && cd Athar_1448.23.3_amd64 && makepkg -si">نسخ الأمر</button>
             </div>
-            <div class="terminal-code">
-              <code id="terminal-code-text">tar -xf Athar_1448.14.3_amd64.tar.gz --one-top-level && cd Athar_1448.14.3_amd64 && makepkg -si</code>
-              <button class="copy-btn" data-code="tar -xf Athar_1448.14.3_amd64.tar.gz --one-top-level && cd Athar_1448.14.3_amd64 && makepkg -si">نسخ الأمر</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Accordion Section -->
+      <section id="faq" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="badge badge-secondary">الأسئلة المتكررة</span>
+            <h2 class="section-title">إجابات عن أهم الاستفسارات</h2>
+            <p class="section-desc">كل ما تحتاج لمعرفته حول تطبيق جامع كتب الأثر ومصادره ومميزاته التقنية.</p>
+          </div>
+
+          <div class="card" style="padding: 1.5rem; max-width: 800px; margin-inline: auto;">
+            <div class="accordion">
+              <!-- Item 1 -->
+              <div class="accordion-item">
+                <button class="accordion-trigger" type="button" aria-expanded="false">
+                  <span>هل التطبيق مجاني بالكامل؟</span>
+                  <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div class="accordion-content">
+                  نعم، جامع كتب الأثر مشروع غير ربحي ومجاني 100% ومستقل لخدمة الباحثين وطلاب العلم في السنة والآثار. لا يحتوي على أي إعلانات أو تتبع أو اشتراكات مدفوعة.
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="accordion-item">
+                <button class="accordion-trigger" type="button" aria-expanded="false">
+                  <span>هل يحتاج التطبيق إلى اتصال دائم بالإنترنت؟</span>
+                  <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div class="accordion-content">
+                  كلا، صُمم البرنامج بمبدأ (Offline-First)؛ فجميع الكتب وقواعد بيانات الرواة وفهارس البحث تعمل محلياً داخل جهازك عبر محرك SQLite مضمن فائق السرعة، ولا يتطلب أي اتصال بالشبكة بعد تنزيل الكتب.
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="accordion-item">
+                <button class="accordion-trigger" type="button" aria-expanded="false">
+                  <span>ما هي مميزات نسخة الويب (PWA) عبر athar-online؟</span>
+                  <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div class="accordion-content">
+                  تتيح نسخة الويب عبر الرابط <a href="https://athar-online.vercel.app" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: underline;">athar-online.vercel.app</a> استخدام التطبيق مباشرة من أي متصفح مع إمكانية تثبيته كتطبيق تقدمي (PWA) على الهواتف والأجهزة اللوحية وحواسيب كروم بوك بنفس محرك البحث المحلي السريع.
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="accordion-item">
+                <button class="accordion-trigger" type="button" aria-expanded="false">
+                  <span>ما هي كتب الآثار والتراجم المتوفرة في البرنامج؟</span>
+                  <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div class="accordion-content">
+                  يضم التطبيق أمهات كتب السنة والآثار كـ: مصنف ابن أبي شيبة، مصنف عبد الرزاق، السنن للبيهقي، وجوامع ومسانيد الحديث، بالإضافة إلى قاعدة تراجم كبرى مستخرجة ومفهرسة من تهذيب الكمال وتقريب التهذيب مع الربط الشجري الدقيق.
+                </div>
+              </div>
+
+              <!-- Item 5 -->
+              <div class="accordion-item">
+                <button class="accordion-trigger" type="button" aria-expanded="false">
+                  <span>كيف يمكنني الإبلاغ عن خطأ في نص أثر أو اقتراح ميزة جديدة؟</span>
+                  <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div class="accordion-content">
+                  يمكنك الإبلاغ مباشرة عبر الضغط على أيقونة العلم بجانب أي أثر داخل البرنامج لفتح بلاغ مجهز مسبقاً، أو زيارة صفحة Issues على مستودع GitHub (<a href="https://github.com/atharapp/athar-website/issues" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: underline;">atharapp/athar-website</a>) وكتابة ملاحظتك واقتراحك.
+                </div>
+              </div>
+
+              <!-- Item 6 -->
+              <div class="accordion-item">
+                <button class="accordion-trigger" type="button" aria-expanded="false">
+                  <span>كيف يتم تحديث البرنامج وتنزيل الإصدارات الجديدة؟</span>
+                  <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div class="accordion-content">
+                  يقوم التطبيق بالتحقق التلقائي من التحديثات، كما يمكنك دائماً تحميل أحدث نسخة مستقرة عبر هذا الموقع الرسمي أو من صفحة Releases على مستودع GitHub (<a href="https://github.com/atharapp/athar-website/releases" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: underline;">atharapp/athar-website/releases</a>).
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- Community & Contact -->
-      <section id="contact" class="section">
+      <section id="contact" class="section section-alt">
         <div class="container">
           <div class="cta-banner">
-            <h2 class="section-title">تواصل معنا وشاركنا رأيك</h2>
-            <p class="section-desc" style="max-width: 620px; margin: 0 auto 28px;">
-              لديك اقتراح لتحسين التطبيق، أو رغبة في إضافة ميزة، أو واجهت خطأ؟ نسعد بمشاركتك وملاحظاتك في مستودع الصفحة.
+            <span class="badge badge-secondary">المجتمع والملاحظات</span>
+            <h2 class="section-title">تواصل معنا وشاركنا رأيك وملاحظاتك</h2>
+            <p class="section-desc" style="max-width: 600px; margin-bottom: 0.5rem;">
+              لديك اقتراح لتحسين التطبيق، أو رغبة في إضافة ميزة، أو واجهت خطأ؟ نسعد بمشاركتك وملاحظاتك عبر صفحة المشكلات (Issues) على مستودع المشروع.
             </p>
-            <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+            <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
               <a class="btn btn-primary btn-lg" href="https://github.com/atharapp/athar-website/issues/new" target="_blank" rel="noopener">
                 افتح موضوعاً على GitHub Issues
               </a>
               <a class="btn btn-outline btn-lg" href="https://github.com/atharapp/athar-website/discussions" target="_blank" rel="noopener">
                 ساحة المناقشات
+              </a>
+              <a class="btn btn-secondary btn-lg" href="https://athar-online.vercel.app" target="_blank" rel="noopener">
+                تجربة نسخة الويب (PWA)
               </a>
             </div>
           </div>
@@ -484,7 +1448,8 @@
           </div>
 
           <div class="footer-links">
-            <a href="https://github.com/atharapp/athar-website" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://athar-online.vercel.app" target="_blank" rel="noopener">نسخة الويب (PWA)</a>
+            <a href="https://github.com/atharapp/athar-website" target="_blank" rel="noopener">مستودع المشروع</a>
             <a href="https://github.com/atharapp/athar-website/releases" target="_blank" rel="noopener">سجل الإصدارات</a>
             <a href="https://github.com/atharapp/athar-website/issues" target="_blank" rel="noopener">الإبلاغ عن مشكلة</a>
             <a href="#download">التحميل</a>
@@ -492,22 +1457,12 @@
         </div>
 
         <div class="footer-copy">
-          <p>جامع كتب الأثر — تطبيق مكتبي مجاني تحت رخصة CC BY-NC-ND 4.0</p>
-          <p style="margin-top: 4px; opacity: 0.8;" class="live-version"></p>
+          <p>جامع كتب الأثر — تطبيق مكتبي وويب مجاني لخدمة الحديث والآثار</p>
+          <p class="live-version"></p>
         </div>
       </div>
     </footer>
 
     <script src="js/main.js" defer></script>
-    
-    <!-- Vercel Speed Insights -->
-    <script type="module">
-      import { injectSpeedInsights } from 'https://cdn.jsdelivr.net/npm/@vercel/speed-insights@2.0.0/dist/index.mjs';
-      
-      injectSpeedInsights({
-        framework: 'html',
-        sampleRate: 1.0
-      });
-    </script>
   </body>
 </html>

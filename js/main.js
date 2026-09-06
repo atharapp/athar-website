@@ -2,10 +2,10 @@
   "use strict";
 
   /* ─────────────────────────────────────────────────────────────
-     Configuration & Constants
+     Configuration & GitHub Release Constants
      ───────────────────────────────────────────────────────────── */
   const REPO = "atharapp/athar-website";
-  const FALLBACK_VERSION = "1448.14.3";
+  const FALLBACK_VERSION = "1448.23.3";
   const API_LATEST_URL = `https://api.github.com/repos/${REPO}/releases/latest`;
 
   const FALLBACK_RELEASE = {
@@ -56,7 +56,7 @@
   };
 
   /* ─────────────────────────────────────────────────────────────
-     Theme Management (Dark / Light)
+     Theme Management (Shadcn Dark / Light)
      ───────────────────────────────────────────────────────────── */
   const themeToggle = document.getElementById("theme-toggle");
 
@@ -65,17 +65,103 @@
   }
 
   function applyTheme(theme) {
-    document.documentElement.setAttribute("data-theme", theme);
+    const root = document.documentElement;
+    if (theme === "dark") {
+      root.classList.add("dark");
+      root.classList.remove("light");
+      root.setAttribute("data-theme", "dark");
+    } else {
+      root.classList.add("light");
+      root.classList.remove("dark");
+      root.setAttribute("data-theme", "light");
+    }
     localStorage.setItem("theme", theme);
   }
 
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
-      const current = document.documentElement.getAttribute("data-theme") || getSystemTheme();
-      const next = current === "dark" ? "light" : "dark";
-      applyTheme(next);
+      const isDark = document.documentElement.classList.contains("dark") ||
+                     document.documentElement.getAttribute("data-theme") === "dark";
+      applyTheme(isDark ? "light" : "dark");
     });
   }
+
+  /* ─────────────────────────────────────────────────────────────
+     Mobile Drawer (Sheet) Toggle
+     ───────────────────────────────────────────────────────────── */
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const mobileDrawer = document.getElementById("mobile-drawer");
+  const mobileDrawerBackdrop = document.getElementById("mobile-drawer-backdrop");
+  const mobileDrawerClose = document.getElementById("mobile-drawer-close");
+
+  function openMobileDrawer() {
+    if (mobileDrawer && mobileDrawerBackdrop) {
+      mobileDrawer.classList.add("open");
+      mobileDrawerBackdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+  }
+
+  function closeMobileDrawer() {
+    if (mobileDrawer && mobileDrawerBackdrop) {
+      mobileDrawer.classList.remove("open");
+      mobileDrawerBackdrop.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+  }
+
+  if (mobileMenuBtn) mobileMenuBtn.addEventListener("click", openMobileDrawer);
+  if (mobileDrawerClose) mobileDrawerClose.addEventListener("click", closeMobileDrawer);
+  if (mobileDrawerBackdrop) mobileDrawerBackdrop.addEventListener("click", closeMobileDrawer);
+
+  document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+    link.addEventListener("click", closeMobileDrawer);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && mobileDrawer && mobileDrawer.classList.contains("open")) {
+      closeMobileDrawer();
+    }
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     Accordion Toggle (FAQ)
+     ───────────────────────────────────────────────────────────── */
+  document.querySelectorAll(".accordion-trigger").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+      const content = trigger.nextElementSibling;
+
+      // Close other accordions in the same list
+      const parentAccordion = trigger.closest(".accordion");
+      if (parentAccordion) {
+        parentAccordion.querySelectorAll(".accordion-trigger").forEach((otherTrigger) => {
+          if (otherTrigger !== trigger) {
+            otherTrigger.setAttribute("aria-expanded", "false");
+            const otherContent = otherTrigger.nextElementSibling;
+            if (otherContent) {
+              otherContent.style.maxHeight = null;
+              otherContent.classList.remove("open");
+            }
+          }
+        });
+      }
+
+      if (isExpanded) {
+        trigger.setAttribute("aria-expanded", "false");
+        if (content) {
+          content.style.maxHeight = null;
+          content.classList.remove("open");
+        }
+      } else {
+        trigger.setAttribute("aria-expanded", "true");
+        if (content) {
+          content.classList.add("open");
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      }
+    });
+  });
 
   /* ─────────────────────────────────────────────────────────────
      OS & Architecture Detection
@@ -158,96 +244,79 @@
       const data = await res.json();
       return data;
     } catch (e) {
-      console.warn("Using fallback release data:", e);
-      return null;
+      console.warn("Using fallback releases due to:", e.message);
+      return FALLBACK_RELEASE;
     }
   }
 
-  function pickPrimaryAsset(osAssets, osKey, arch, currentVersion) {
-    if (!osAssets || osAssets.length === 0) return null;
-    const scored = osAssets.map((a) => {
-      const p = parseAssetName(a.name);
-      let score = 0;
-      if (p.arch === arch) score += 10;
-      if (currentVersion && a.name.includes(currentVersion)) score += 5;
-      if (osKey === "linux") {
-        if (a.name.endsWith(".tar.gz")) score += 6;
-        else if (a.name.endsWith(".deb")) score += 3;
-        else if (a.name.endsWith(".AppImage")) score += 2;
-        else if (a.name.endsWith(".rpm")) score += 1;
-      } else if (osKey === "windows") {
-        if (a.name.endsWith(".exe")) score += 6;
-      } else if (osKey === "mac") {
-        if (a.name.endsWith(".dmg")) score += 6;
-      }
-      if (a.name.includes("-updater")) score -= 20;
-      return { asset: a, score };
-    });
-    scored.sort((a, b) => b.score - a.score);
-    return scored[0]?.asset || osAssets[0];
+  function pickPrimaryAsset(assets, osKey, archKey, rawVersion) {
+    if (osKey === "windows") {
+      return (
+        assets.find((a) => a.name.endsWith(".exe") && (archKey === "arm64" ? a.name.includes("arm64") : !a.name.includes("arm64"))) ||
+        assets.find((a) => a.name.endsWith(".exe"))
+      );
+    }
+    if (osKey === "mac") {
+      return (
+        assets.find((a) => a.name.endsWith(".dmg") && (archKey === "arm64" ? a.name.includes("aarch64") : a.name.includes("x64"))) ||
+        assets.find((a) => a.name.endsWith(".dmg"))
+      );
+    }
+    if (osKey === "linux") {
+      return (
+        assets.find((a) => a.name.endsWith(".tar.gz") && !a.name.includes("arm64")) ||
+        assets.find((a) => a.name.endsWith(".deb")) ||
+        assets.find((a) => a.name.endsWith(".AppImage"))
+      );
+    }
+    return assets[0];
   }
 
-  function updateDownloadButtons(releaseData) {
-    if (!releaseData) return;
+  function updateDownloadButtons(release) {
+    const assets = release.assets || [];
+    const rawVersion = release.tag_name ? release.tag_name.replace(/^v/, "") : FALLBACK_VERSION;
 
-    const assets = releaseData.assets || [];
-    const rawVersion = (releaseData.tag_name || "").replace(/^v/, "");
-    const releaseName = releaseData.name || releaseData.tag_name || rawVersion;
-    const versionText = releaseName.startsWith("الإصدار") ? releaseName : `الإصدار ${releaseName}`;
-
-    // Update Version Badges
     document.querySelectorAll(".live-version").forEach((el) => {
-      el.textContent = versionText;
+      el.textContent = `الإصدار ${release.tag_name || `v${FALLBACK_VERSION}`}`;
     });
 
-    // Update Arch Linux Terminal Command Snippet
-    const terminalCode = document.getElementById("terminal-code-text");
-    const copyBtn = document.querySelector(".terminal-box .copy-btn");
-    const linuxTar = assets.find((a) => a.name.includes(rawVersion) && (a.name.endsWith("amd64.tar.gz") || a.name.endsWith("x86_64.tar.gz"))) ||
-      assets.find((a) => a.name.endsWith("amd64.tar.gz") || a.name.endsWith("x86_64.tar.gz")) ||
-      assets.find((a) => a.name.endsWith(".tar.gz"));
-
-    if (linuxTar) {
-      const folderName = linuxTar.name.replace(/\.tar\.gz$/, "");
-      const cmd = `tar -xf ${linuxTar.name} --one-top-level && cd ${folderName} && makepkg -si`;
-      if (terminalCode) terminalCode.textContent = cmd;
-      if (copyBtn) copyBtn.setAttribute("data-code", cmd);
-    }
-
-    // Mark Detected OS Card
-    const detectedCard = document.querySelector(`.os-card[data-os="${userOS}"]`);
-    if (detectedCard) {
-      detectedCard.classList.add("is-detected");
-    }
-
-    // Determine Best Asset for Hero Download Button
     const heroBtn = document.getElementById("hero-download-btn");
     const heroMeta = document.getElementById("hero-download-meta");
 
-    const userOsAssets = assets.filter((a) => parseAssetName(a.name).os === userOS);
-    const primaryAsset = pickPrimaryAsset(userOsAssets, userOS, userArch, rawVersion);
-
-    if (heroBtn && primaryAsset) {
-      heroBtn.href = primaryAsset.browser_download_url;
-      const osLabel = userOS === "windows" ? "لويندوز" : userOS === "mac" ? "لماك" : "للينكس";
-      const p = parseAssetName(primaryAsset.name);
-      const formatLabel = userOS === "linux" ? " (.tar.gz)" : "";
-      heroBtn.innerHTML = `
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        تحميل مجاني ${osLabel}${formatLabel}
-      `;
-      if (heroMeta) {
-        heroMeta.textContent = `${versionText} · ${p.format} · ${humanSize(primaryAsset.size)}`;
+    if (heroBtn) {
+      const primary = pickPrimaryAsset(assets, userOS, userArch, rawVersion);
+      if (primary) {
+        heroBtn.href = primary.browser_download_url;
+        const osArabic = userOS === "windows" ? "ويندوز" : userOS === "mac" ? "ماك" : "لينكس";
+        const p = parseAssetName(primary.name);
+        heroBtn.innerHTML = `
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          تحميل مجاني لـ ${osArabic} <span style="font-size:0.8em;opacity:0.9">(${p.format})</span>
+        `;
       }
     }
 
-    // Populate Platform Cards
-    ["windows", "mac", "linux"].forEach((osKey) => {
-      const card = document.querySelector(`.os-card[data-os="${osKey}"]`);
-      if (!card) return;
+    if (heroMeta) {
+      const osArabic = userOS === "windows" ? "Windows" : userOS === "mac" ? "macOS" : "Linux";
+      heroMeta.textContent = `تم اكتشاف نظامك: ${osArabic} (${userArch}) · مجاني ومستقل بالكامل`;
+    }
 
-      const mainBtn = card.querySelector(".os-primary-btn");
-      const dropList = card.querySelector(".os-dropdown-menu");
+    // Terminal snippet code for Arch Linux
+    const terminalCode = document.getElementById("terminal-code-text");
+    if (terminalCode) {
+      const tarAsset = assets.find((a) => a.name.endsWith("amd64.tar.gz")) || { name: `Athar_${rawVersion}_amd64.tar.gz` };
+      const folder = tarAsset.name.replace(/\.tar\.gz$/, "");
+      const cmd = `tar -xf ${tarAsset.name} --one-top-level && cd ${folder} && makepkg -si`;
+      terminalCode.textContent = cmd;
+      const copyBtn = document.querySelector(".terminal-box .copy-btn");
+      if (copyBtn) copyBtn.dataset.code = cmd;
+    }
+
+    // Update OS Cards
+    document.querySelectorAll(".os-card").forEach((card) => {
+      const osKey = card.dataset.os;
+      const mainBtn = card.querySelector(".os-download-btn");
+      const dropList = card.querySelector(".dropdown-menu");
 
       const osAssets = assets.filter((a) => parseAssetName(a.name).os === osKey);
 
@@ -265,11 +334,10 @@
           osAssets.forEach((a) => {
             const parsed = parseAssetName(a.name);
             const li = document.createElement("li");
-            li.className = "os-dropdown-item";
             li.innerHTML = `
-              <a href="${a.browser_download_url}" target="_blank" rel="noopener">
+              <a class="dropdown-item" href="${a.browser_download_url}" target="_blank" rel="noopener">
                 <span>${parsed.format} <bdi>(${parsed.arch})</bdi></span>
-                <span style="opacity:0.7">${humanSize(a.size)}</span>
+                <span style="opacity:0.65;font-size:0.8em;">${humanSize(a.size)}</span>
               </a>
             `;
             dropList.appendChild(li);
@@ -284,15 +352,276 @@
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
       const menu = btn.nextElementSibling;
-      const isOpen = menu.classList.contains("open");
-      document.querySelectorAll(".os-dropdown-menu.open").forEach((m) => m.classList.remove("open"));
-      if (!isOpen) menu.classList.add("open");
+      const isOpen = menu && menu.classList.contains("open");
+      document.querySelectorAll(".dropdown-menu.open").forEach((m) => m.classList.remove("open"));
+      if (menu && !isOpen) menu.classList.add("open");
     });
   });
 
   document.addEventListener("click", () => {
-    document.querySelectorAll(".os-dropdown-menu.open").forEach((m) => m.classList.remove("open"));
+    document.querySelectorAll(".dropdown-menu.open").forEach((m) => m.classList.remove("open"));
   });
+
+  /* ─────────────────────────────────────────────────────────────
+     Interactive Narrator Popovers (Card Tooltips)
+     ───────────────────────────────────────────────────────────── */
+  const NARRATOR_PROFILES = {
+    1: {
+      name: "عبد الله بن الزبير الحميدي",
+      shohra: "الحميدي",
+      rotba: "ثقة حافظ فقيه",
+      tabaqa: "الطبقة التاسعة — صغار أتباع التابعين",
+      death: "219 هـ (مكة المكرمة)",
+      gradeColor: "var(--grade-strong)",
+      quote: "قال الإمام الشافعي: الحميدي إمام في الحديث والفقه، ما رأيت أحداً أحفظ منه.",
+    },
+    2: {
+      name: "سفيان بن عيينة بن ميمون الهلالي",
+      shohra: "ابن عيينة",
+      rotba: "ثقة ثبت حافظ إمام حجة",
+      tabaqa: "الطبقة الثامنة — كبار أتباع التابعين",
+      death: "198 هـ (مكة المكرمة)",
+      gradeColor: "var(--grade-strong)",
+      quote: "قال الإمام أحمد بن حنبل: ما رأيت أحداً أعلم بالسنن من سفيان بن عيينة.",
+    },
+    3: {
+      name: "يحيى بن سعيد بن قيس الأنصاري",
+      shohra: "يحيى بن سعيد الأنصاري",
+      rotba: "ثقة ثبت (مدار الحديث)",
+      tabaqa: "الطبقة الخامسة — صغار التابعين",
+      death: "143 هـ",
+      gradeColor: "var(--grade-pivot)",
+      quote: "قال يحيى بن معين: يحيى بن سعيد الأنصاري ثقة مأمون حجة.",
+    },
+    4: {
+      name: "محمد بن إبراهيم بن الحارث التيمي",
+      shohra: "محمد بن إبراهيم التيمي",
+      rotba: "ثقة جليل",
+      tabaqa: "الطبقة الرابعة — أوساط التابعين",
+      death: "120 هـ",
+      gradeColor: "var(--grade-strong)",
+      quote: "قال أبو حاتم الرازي: ثقة، متقن، حديثه حجة.",
+    },
+    5: {
+      name: "علقمة بن وقاص الليثي",
+      shohra: "علقمة بن وقاص",
+      rotba: "ثقة جليل مخضرم",
+      tabaqa: "الطبقة الثالثة — كبار التابعين",
+      death: "توفي في خلافة عبد الملك بن مروان",
+      gradeColor: "var(--grade-strong)",
+      quote: "قال ابن سعد: كان ثقة، وله أحاديث صالحة.",
+    },
+    6: {
+      name: "عمر بن الخطاب بن نفيل القرشي",
+      shohra: "أمير المؤمنين عمر بن الخطاب",
+      rotba: "صحابي جليل — خليفة رسول الله ﷺ",
+      tabaqa: "الطبقة الأولى — كبار الصحابة",
+      death: "23 هـ (شهيداً في المحراب)",
+      gradeColor: "var(--grade-companion)",
+      quote: "قال رسول الله ﷺ: «لو كان بعدي نبي لكان عمر بن الخطاب».",
+    },
+    7: {
+      name: "عبيد الله بن سعيد بن يحيى اليشكري (أبو قدامة السرخسي)",
+      shohra: "أبو قدامة السرخسي",
+      rotba: "ثقة ثبت مأمون إمام",
+      tabaqa: "الطبقة العاشرة — كبار الآخذين عن تبع الأتباع",
+      death: "241 هـ",
+      gradeColor: "var(--grade-strong)",
+      quote: "قال النسائي: ثقة مأمون، وقال ابن حبان: كان متقناً ورعاً.",
+    },
+    8: {
+      name: "عبد بن حميد بن نصر الكشي (أبو محمد)",
+      shohra: "عبد بن حميد",
+      rotba: "حافظ حجة إمام مفسر",
+      tabaqa: "الطبقة العاشرة — صاحب المسند والتفسير",
+      death: "249 هـ",
+      gradeColor: "var(--grade-strong)",
+      quote: "قال الإمام مسلم: كان من أئمة المسلمين وأهل الحفظ والإتقان.",
+    },
+    9: {
+      name: "عبد الملك بن عمرو القيسي (أبو عامر العقدي)",
+      shohra: "أبو عامر العقدي",
+      rotba: "ثقة مأمون",
+      tabaqa: "الطبقة التاسعة — صغار أتباع التابعين",
+      death: "204 هـ (البصرة)",
+      gradeColor: "var(--grade-strong)",
+      quote: "قال يحيى بن معين والإمام أحمد: ثقة صالح الحديث مأمون.",
+    },
+    10: {
+      name: "سليمان بن بلال القرشي التيمي (أبو محمد المدني)",
+      shohra: "سليمان بن بلال",
+      rotba: "ثقة ثبت",
+      tabaqa: "الطبقة الثامنة — كبار أتباع التابعين",
+      death: "177 هـ (المدينة المنورة)",
+      gradeColor: "var(--grade-strong)",
+      quote: "قال أحمد بن حنبل: سليمان بن بلال ثقة صحيح الحديث، قاضي المدينة.",
+    },
+    11: {
+      name: "عبد الله بن دينار العدوي القرشي (أبو عبد الرحمن المدني)",
+      shohra: "عبد الله بن دينار",
+      rotba: "ثقة ثبت إمام",
+      tabaqa: "الطبقة الخامسة — صغار التابعين (مولى ابن عمر)",
+      death: "127 هـ (المدينة المنورة)",
+      gradeColor: "var(--grade-strong)",
+      quote: "قال شعبة بن الحجاج: عبد الله بن دينار من سادات أهل المدينة وأوثق الناس.",
+    },
+    12: {
+      name: "ذكوان بن عبد الله السمان (أبو صالح السمان المدني)",
+      shohra: "أبو صالح السمان",
+      rotba: "ثقة ثبت جليل",
+      tabaqa: "الطبقة الثالثة — كبار التابعين (ملازم لأبي هريرة)",
+      death: "101 هـ (المدينة المنورة)",
+      gradeColor: "var(--grade-strong)",
+      quote: "قال علي بن المديني: أبو صالح السمان من الثقات الأثبات، روى عن أبي هريرة نحواً من ألف حديث.",
+    },
+    13: {
+      name: "عبد الرحمن بن صخر الدوسي (أبو هريرة رضي الله عنه)",
+      shohra: "أبو هريرة رضي الله عنه",
+      rotba: "صحابي جليل — راوية الإسلام وأحفظ الصحابة",
+      tabaqa: "الطبقة الأولى — كبار الصحابة",
+      death: "57 هـ (المدينة المنورة)",
+      gradeColor: "var(--grade-companion)",
+      quote: "قال الإمام الشافعي: أبو هريرة أحفظ من روى الحديث في دهره.",
+    },
+  };
+
+  const popover = document.createElement("div");
+  popover.className = "narrator-popover";
+  document.body.appendChild(popover);
+
+  let activeToken = null;
+
+  function showNarratorPopover(token) {
+    const id = token.dataset.narratorId;
+    const narrator = NARRATOR_PROFILES[id];
+    if (!narrator) return;
+
+    popover.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <span style="font-weight:700;font-size:0.95rem;color:var(--popover-foreground);">${narrator.shohra}</span>
+        <span class="badge badge-secondary" style="color:${narrator.gradeColor};font-weight:700;font-size:0.75rem;">${narrator.rotba}</span>
+      </div>
+      <div style="font-size:0.8125rem;color:var(--muted-foreground);">${narrator.name}</div>
+      <div style="display:flex;flex-direction:column;gap:3px;font-size:0.78rem;color:var(--muted-foreground);border-top:1px solid var(--border);padding-top:6px;">
+        <div><strong>الطبقة:</strong> ${narrator.tabaqa}</div>
+        <div><strong>الوفاة:</strong> ${narrator.death}</div>
+      </div>
+      <p style="font-size:0.8rem;color:var(--popover-foreground);font-style:italic;line-height:1.5;background:var(--muted);padding:8px 10px;border-radius:var(--radius);border-right:3px solid var(--primary);">${narrator.quote}</p>
+    `;
+
+    const rect = token.getBoundingClientRect();
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const scrollX = window.scrollX || document.documentElement.scrollLeft;
+
+    popover.style.display = "flex";
+    popover.style.top = `${rect.bottom + scrollY + 8}px`;
+    popover.style.left = `${Math.max(10, Math.min(window.innerWidth - 300, rect.left + scrollX - 60))}px`;
+    activeToken = token;
+  }
+
+  function hideNarratorPopover() {
+    popover.style.display = "none";
+    activeToken = null;
+  }
+
+  document.querySelectorAll(".rawy-token").forEach((token) => {
+    token.addEventListener("mouseenter", () => showNarratorPopover(token));
+    token.addEventListener("click", (e) => {
+      e.stopPropagation();
+      showNarratorPopover(token);
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    if (activeToken && !popover.contains(e.target) && e.target !== activeToken) {
+      hideNarratorPopover();
+    }
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     Hero Narration Card Tashkeel, Font Controls & Heart Pop
+     ───────────────────────────────────────────────────────────── */
+  const TASHKEEL_REGEX = /[\u064B-\u0652\u0640\u0670\u200C]/g;
+  let tashkeelEnabled = true;
+
+  const matnEl = document.getElementById("hero-matn-text");
+  const origMatn = matnEl ? matnEl.textContent.trim() : "";
+  const tashkeelBtn = document.getElementById("toggle-tashkeel-btn");
+
+  if (tashkeelBtn && matnEl) {
+    tashkeelBtn.addEventListener("click", () => {
+      tashkeelEnabled = !tashkeelEnabled;
+      if (tashkeelEnabled) {
+        matnEl.textContent = origMatn;
+        tashkeelBtn.innerHTML = `
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
+          إخفاء التشكيل
+        `;
+      } else {
+        matnEl.textContent = origMatn.replace(TASHKEEL_REGEX, "");
+        tashkeelBtn.innerHTML = `
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
+          إظهار التشكيل
+        `;
+      }
+    });
+  }
+
+  // Font Size Adjuster
+  const zoomInBtn = document.getElementById("font-zoom-in");
+  const zoomOutBtn = document.getElementById("font-zoom-out");
+  let currentFontSize = 1.35;
+
+  if (zoomInBtn && matnEl) {
+    zoomInBtn.addEventListener("click", () => {
+      if (currentFontSize < 1.9) {
+        currentFontSize += 0.125;
+        matnEl.style.fontSize = `${currentFontSize}rem`;
+      }
+    });
+  }
+  if (zoomOutBtn && matnEl) {
+    zoomOutBtn.addEventListener("click", () => {
+      if (currentFontSize > 1.05) {
+        currentFontSize -= 0.125;
+        matnEl.style.fontSize = `${currentFontSize}rem`;
+      }
+    });
+  }
+
+  // Heart Pop Animation from athar-desktop
+  const demoHeartBtn = document.getElementById("demo-heart-btn");
+  const container = document.getElementById("narration-view-container");
+
+  function triggerHeartPop(x, y) {
+    if (!container) return;
+    const heart = document.createElement("div");
+    heart.className = "floating-heart";
+    heart.innerHTML = `<svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`;
+    heart.style.left = `${x}px`;
+    heart.style.top = `${y}px`;
+    container.appendChild(heart);
+    setTimeout(() => heart.remove(), 950);
+  }
+
+  if (demoHeartBtn && container) {
+    demoHeartBtn.addEventListener("click", (e) => {
+      const rect = demoHeartBtn.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      const x = rect.left - containerRect.left + rect.width / 2 - 18;
+      const y = rect.top - containerRect.top - 20;
+      triggerHeartPop(x, y);
+    });
+  }
+
+  if (matnEl && container) {
+    matnEl.addEventListener("dblclick", (e) => {
+      const containerRect = container.getBoundingClientRect();
+      const x = e.clientX - containerRect.left - 18;
+      const y = e.clientY - containerRect.top - 24;
+      triggerHeartPop(x, y);
+    });
+  }
 
   /* ─────────────────────────────────────────────────────────────
      Interactive Live Takhrij Simulator
@@ -300,7 +629,7 @@
   const DEMO_CASES = [
     {
       id: "niyyah",
-      label: "حديث: إنما الأعمال بالنيات",
+      label: "إنما الأعمال بالنيات",
       sourceBook: "صحيح البخاري — رقم (1)",
       sourceText: "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا، فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ.",
       targetBook: "صحيح مسلم — رقم (1907)",
@@ -309,7 +638,7 @@
     },
     {
       id: "iman",
-      label: "حديث: الإيمان بضع وسبعون شعبة",
+      label: "شعب الإيمان",
       sourceBook: "صحيح مسلم — رقم (35)",
       sourceText: "الْإِيمَانُ بِضْعٌ وَسَبْعُونَ أَوْ بِضْعٌ وَسِتُّونَ شُعْبَةً، فَأَفْضَلُهَا قَوْلُ: لَا إِلَهَ إِلَّا اللهُ، وَأَدْنَاهَا إِمَاطَةُ الْأَذَى عَنِ الطَّرِيقِ، وَالْحَيَاءُ شُعْبَةٌ مِنَ الْإِيمَانِ.",
       targetBook: "سنن أبي داود — رقم (4676)",
@@ -318,7 +647,7 @@
     },
     {
       id: "athar-umar",
-      label: "أثر عمر بن الخطاب في التفقه",
+      label: "أثر عمر في التفقه",
       sourceBook: "مصنف ابن أبي شيبة — رقم (26154)",
       sourceText: "تَفَقَّهُوا قَبْلَ أَنْ تُسَوَّدُوا، فَإِنَّكُمْ إِنْ لَمْ تَفَقَّهُوا لَمْ تَسُودُوا.",
       targetBook: "جامع بيان العلم وفضله — رقم (482)",
@@ -343,8 +672,12 @@
 
   document.querySelectorAll(".demo-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
-      document.querySelectorAll(".demo-btn").forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
+      document.querySelectorAll(".demo-btn").forEach((b) => {
+        b.classList.remove("active", "btn-outline");
+        b.classList.add("btn-ghost");
+      });
+      btn.classList.add("active", "btn-outline");
+      btn.classList.remove("btn-ghost");
       const caseId = btn.dataset.case;
       const found = DEMO_CASES.find((c) => c.id === caseId);
       if (found) renderDemoCase(found);
@@ -352,140 +685,97 @@
   });
 
   /* ─────────────────────────────────────────────────────────────
-     Interactive App Showcase Tour Tabs
+     Interactive Search Modes Showcase Tabs
      ───────────────────────────────────────────────────────────── */
-  const TOUR_DATA = {
-    home: {
-      title: "الشاشة الرئيسية",
-      desc: "لوحة تحكم ترحيبية أنيقة تعرض «أثر اليوم»، إحصاءات مكتبتك، وسجل استئناف القراءة فورياً.",
-      features: [
-        "أثر يومي متجدد من كتبك المحملة مع زر تخريج مباشر بنقرة واحدة.",
-        "إحصاءات شاملة لعدد الكتب والرواة والروايات المتاحة في جهازك.",
-        "بطاقة «متابعة القراءة» للعودة الدقيقة لآخر كتاب كنت تقرؤه.",
-        "إظهار وإخفاء التشكيل بضغطة زر مع خيارات نسخ متعددة بالعزو.",
-      ],
-      imgLight: "screenshots/light/home.png",
-      imgDark: "screenshots/dark/home.png",
-    },
-    search: {
-      title: "البحث الذكي",
-      desc: "بحث متقدم وفائق السرعة في المتون والأسانيد، يتجاهل التشكيل والهمزات مع فلاتر دقيقة.",
-      features: [
-        "بحث ذكي وسريع في متون الأحاديث والآثار وأسانيدها.",
-        "تصفية متزامنة بالكتب والمؤلفين وتراجم الرواة مع عدّادات حية.",
-        "تظليل فوري للكلمات المطابقة داخل سياق الأثر وسنده.",
-        "سجل تاريخي محفوظ لعمليات البحث مع تصدير النتائج CSV و JSON.",
-      ],
-      imgLight: "screenshots/light/search.png",
-      imgDark: "screenshots/dark/search.png",
-    },
-    takhrij: {
-      title: "التخريج ومقارنة الروايات",
-      desc: "شاشة التخريج الآلي لعزو الأحاديث ومقارنة ألفاظ الروايات مع تلوين الفروق والزيادات.",
-      features: [
-        "عزو فوري لمواضع الأثر في مختلف كتب السنة والآثار.",
-        "مقارنة دقيقة لألفاظ المتون وإبراز الزيادات والنواقص بالألوان.",
-        "حساب نسبة التطابق الدلالي واللفظي بين الروايات.",
-        "إمكانية الانتقال المباشر لموضع الشاهد في الكتاب الآخر.",
-      ],
-      imgLight: "screenshots/light/search-takhrij.png",
-      imgDark: "screenshots/dark/search-takhrij.png",
-    },
-    narration: {
-      title: "قارئ الآثار والمتون",
-      desc: "تجربة قراءة تراثية راقية مع شجرة إسناد تفاعلية، فهرس موضوعات وتتبع دقيق للمواضع.",
-      features: [
-        "فهرس متسلسل لأبواب وموضوعات الكتاب مع تتبع الموضع تلقائياً.",
-        "روابط تفاعلية لجميع الرواة في السند تفتح ترجمتهم بنقرة واحدة.",
-        "شارات ملونة تبين درجة الراوي وحكم المحدثين فيه (صحابي، ثقة، مقبول...).",
-        "محرر تدوين الفوائد والتعليقات وحفظ فواصل القراءة والمفضلة.",
-      ],
-      imgLight: "screenshots/light/narration.png",
-      imgDark: "screenshots/dark/narration.png",
-    },
-    narrator: {
-      title: "موسوعة تراجم الرواة",
-      desc: "بطاقات بيوغرافية مفصلة لآلاف الرواة مع استعراض شيوخهم وتلاميذهم ومروياتهم.",
-      features: [
-        "بيانات الراوي الكاملة: الاسم، الكنية، اللقب، المذهب، الطبقة، وتاريخ الوفاة.",
-        "نص الترجمة المعتمد من «تهذيب الكمال» للمزي والمصادر الكبرى.",
-        "قائمة كاملة بشيوخ الراوي وتلاميذه مع إمكانية البحث بينهم.",
-        "حصر عدد مرويات الراوي في المكتبة والوصول إليها بضغطة زر.",
-      ],
-      imgLight: "screenshots/light/narrator.png",
-      imgDark: "screenshots/dark/narrator.png",
-    },
-    jarh: {
-      title: "أقوال الجرح والتعديل",
-      desc: "عرض مبوب ومفصل لأقوال أئمة ونقاد الحديث في مرتبة الراوي وتعديله وتجريحه.",
-      features: [
-        "أقوال النقاد مرتبة وموثقة بأسماء قائليها من أئمة الشأن.",
-        "بيان رتبة وضبط الراوي بدقة (ثقة ثبت، صدوق، ضعيف، متروك...).",
-        "سهولة تصفح ومقارنة أحكام النقاد المختلفة في الراوي الواحد.",
-        "ربط مباشر بين حكم الراوي وظهوره في أسانيد الأحاديث.",
-      ],
-      imgLight: "screenshots/light/narrator-jarhandadala.png",
-      imgDark: "screenshots/dark/narrator-jarhandadala.png",
-    },
-    allbooks: {
-      title: "مستودع الكتب والتنزيل",
-      desc: "تصفح مكتبة الآثار والمصنفات، وحمّل الكتب بنقرة واحدة مع إدارة متزامنة.",
-      features: [
-        "قائمة بالكتب والمؤلفين والأقسام وحجم كل كتاب بدقة.",
-        "تحميل متزامن متعدد مع إيقاف مؤقت، استئناف، ونسبة مئوية حية.",
-        "مزامنة دورية تلقائية للكتب والبيانات الحديثة.",
-        "شارات ذكية لحالة الكتاب (مُحمّل، قيد التنزيل، تحديث متاح).",
-      ],
-      imgLight: "screenshots/light/allbooks.png",
-      imgDark: "screenshots/dark/allbooks.png",
-    },
-    downloadedbooks: {
-      title: "إدارة مكتبتي المحلية",
-      desc: "استعراض وتنظيم كامل لجميع الكتب المحفوظة على جهازك وتصفيتها بلا إنترنت.",
-      features: [
-        "إحصاءات إجمالية لحجم الكتب ومجموع الآثار المحفوظة محلياً.",
-        "فرز فوري حسب اسم الكتاب، المؤلف، القسم، أو تاريخ التنزيل.",
-        "حذف وإعادة تنزيل الكتب والنسخ الاحتياطي لقواعد البيانات.",
-        "فتح فوري لأي كتاب بدون انتظار في أجزاء من الثانية.",
-      ],
-      imgLight: "screenshots/light/downloadedbooks.png",
-      imgDark: "screenshots/dark/downloadedbooks.png",
-    },
-  };
+  document.querySelectorAll(".search-mode-tab-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const container = btn.closest(".search-modes-showcase");
+      if (!container) return;
 
-  document.querySelectorAll(".tour-tab").forEach((tab) => {
-    tab.addEventListener("click", () => {
-      document.querySelectorAll(".tour-tab").forEach((t) => t.classList.remove("active"));
-      tab.classList.add("active");
+      container.querySelectorAll(".search-mode-tab-btn").forEach((b) => b.classList.remove("active"));
+      container.querySelectorAll(".search-mode-tab-pane").forEach((p) => p.classList.remove("active"));
 
-      const key = tab.dataset.tour;
-      const data = TOUR_DATA[key];
-      if (!data) return;
-
-      const titleEl = document.getElementById("tour-title");
-      const descEl = document.getElementById("tour-desc");
-      const listEl = document.getElementById("tour-features-list");
-      const imgLight = document.getElementById("tour-img-light");
-      const imgDark = document.getElementById("tour-img-dark");
-
-      if (titleEl) titleEl.textContent = data.title;
-      if (descEl) descEl.textContent = data.desc;
-      if (imgLight) imgLight.src = data.imgLight;
-      if (imgDark) imgDark.src = data.imgDark;
-
-      if (listEl) {
-        listEl.innerHTML = "";
-        data.features.forEach((feat) => {
-          const li = document.createElement("li");
-          li.innerHTML = `
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>${feat}</span>
-          `;
-          listEl.appendChild(li);
-        });
-      }
+      btn.classList.add("active");
+      const targetId = btn.dataset.searchMode;
+      const targetPane = document.getElementById(targetId);
+      if (targetPane) targetPane.classList.add("active");
     });
   });
+
+  /* ─────────────────────────────────────────────────────────────
+     Interactive App Showcase Tabs
+     ───────────────────────────────────────────────────────────── */
+  document.querySelectorAll(".tabs-trigger").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const container = tab.closest(".tabs");
+      if (!container) return;
+
+      container.querySelectorAll(".tabs-trigger").forEach((t) => t.classList.remove("active"));
+      container.querySelectorAll(".tabs-content").forEach((p) => p.classList.remove("active"));
+
+      tab.classList.add("active");
+      const targetId = tab.dataset.target;
+      const panel = document.getElementById(targetId);
+      if (panel) panel.classList.add("active");
+    });
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     Interactive Chain Search Demo
+     ───────────────────────────────────────────────────────────── */
+  const chainChipsContainer = document.getElementById("chain-chips-container");
+  const chainResultCount = document.getElementById("chain-result-count");
+
+  let activeChain = [
+    { id: 1, name: "الحميدي" },
+    { id: 2, name: "سفيان بن عيينة" },
+    { id: 3, name: "يحيى بن سعيد" },
+  ];
+
+  function renderChainChips() {
+    if (!chainChipsContainer) return;
+    chainChipsContainer.innerHTML = "";
+    activeChain.forEach((n, idx) => {
+      const chip = document.createElement("div");
+      chip.className = "badge badge-outline";
+      chip.style.fontSize = "0.8125rem";
+      chip.style.padding = "0.25rem 0.65rem";
+      chip.style.display = "inline-flex";
+      chip.style.alignItems = "center";
+      chip.style.gap = "0.375rem";
+      chip.innerHTML = `
+        <span style="font-weight:700;color:var(--primary);">${idx + 1}.</span>
+        <span style="font-weight:600;color:var(--foreground);">${n.name}</span>
+        ${idx < activeChain.length - 1 ? '<span style="color:var(--primary);font-weight:700;">⬅</span>' : ""}
+      `;
+      chainChipsContainer.appendChild(chip);
+    });
+
+    if (chainResultCount) {
+      chainResultCount.textContent = `${activeChain.length * 4 + 2} آثار مطابقة بنفس الترتيب`;
+    }
+  }
+
+  const addChainBtn = document.getElementById("add-chain-narrator-btn");
+  if (addChainBtn) {
+    const extraNarrators = [
+      { id: 4, name: "محمد بن إبراهيم التيمي" },
+      { id: 5, name: "علقمة بن وقاص" },
+      { id: 6, name: "عمر بن الخطاب" },
+    ];
+    let nextIdx = 0;
+    addChainBtn.addEventListener("click", () => {
+      if (nextIdx < extraNarrators.length) {
+        activeChain.push(extraNarrators[nextIdx]);
+        nextIdx++;
+        renderChainChips();
+      } else {
+        activeChain = [{ id: 1, name: "الحميدي" }, { id: 2, name: "سفيان بن عيينة" }];
+        nextIdx = 0;
+        renderChainChips();
+      }
+    });
+  }
 
   /* ─────────────────────────────────────────────────────────────
      Clipboard Copy Helper
@@ -495,14 +785,10 @@
       const code = btn.dataset.code || btn.previousElementSibling?.textContent || "";
       try {
         await navigator.clipboard.writeText(code.trim());
-        const originalText = btn.textContent;
+        const originalText = btn.innerHTML;
         btn.textContent = "تم النسخ ✓";
-        btn.style.borderColor = "var(--brand-primary)";
-        btn.style.color = "var(--brand-primary)";
         setTimeout(() => {
-          btn.textContent = originalText;
-          btn.style.borderColor = "";
-          btn.style.color = "";
+          btn.innerHTML = originalText;
         }, 2000);
       } catch (err) {
         console.error("Copy failed:", err);
@@ -515,7 +801,9 @@
      ───────────────────────────────────────────────────────────── */
   async function init() {
     renderDemoCase(DEMO_CASES[0]);
-    // 1. Render immediate fallback
+    renderChainChips();
+
+    // 1. Render immediate fallback release
     updateDownloadButtons(FALLBACK_RELEASE);
 
     // 2. Fetch latest live release from GitHub API
